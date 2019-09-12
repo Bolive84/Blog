@@ -1,4 +1,3 @@
-
 Title: My Second Blog
 Date: 2019-09-12
 Slug: blog2
