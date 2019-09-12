@@ -1,3 +1,4 @@
+
 Title: My Second Blog
 Date: 2019-09-12
 Slug: blog2
@@ -83,6 +84,27 @@ df
 </div>
 
 
+
+
+```python
+import numpy as np
+chart.histogram(np.random.normal(100, 20, size=100), mark='x')
+```
+
+        x    
+        x    
+        x    
+      x x    
+      x x    
+      x x    
+      x x x  
+      x x x  
+    x x x x x
+    x x x x x
+    
+    
+
+![](https://cdn1.vectorstock.com/i/1000x1000/54/50/smiling-cartoon-yeti-vector-4995450.jpg)
 
 
 ```python
