@@ -1,3 +1,4 @@
+
 Title: My Second Blog
 Date: 2019-09-12
 Slug: blog2
@@ -105,10 +106,7 @@ chart.histogram(np.random.normal(100, 20, size=100), mark='x')
 
 ![](https://cdn1.vectorstock.com/i/1000x1000/54/50/smiling-cartoon-yeti-vector-4995450.jpg)
 
-
-```python
-
-```
+![](https://d.newsweek.com/en/full/1409646/whats-difference-between-yeti-bigfoot-sasquatch.png?w=1600&h=1200&q=88&f=fc57fa80f9c841873705fe0e4956e5cf)
 
 
 ```python
