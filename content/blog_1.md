@@ -1,6 +1,6 @@
-Title: My First Blog 
-Date: 2019-09-12
-Slug: Blog#1
+Title: My First Blog
+Date: 2019-09-15
+Slug: blog1
 
 RANdom SAmple Consensus (RANSAC) Method:
 
