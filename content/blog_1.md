@@ -1,6 +1,6 @@
-Title: My First Blog
+Title: My First Blog 
 Date: 2019-09-15
-Slug: blog1
+Slug: Blog#1
 
 RANdom SAmple Consensus (RANSAC) Method:
 
@@ -207,22 +207,11 @@ plt.ylabel("Target")
 
 from sklearn.metrics import mean_squared_error, mean_absolute_error, median_absolute_error, r2_score, mean_squared_log_error 
 
-# Mean Squared Error (Goal: Get  𝑀𝑆𝐸  as close to 0 as possible.:
 print('Mean Squared Error - Linear Regression: ', (mean_squared_error(df['B'], df['Linear_Yhat'])))
-
-# Mean Absolute Error (Goal: Get  𝑀𝐴𝐸  as close to 0 as possible)
 print('Mean Absolute Error - Linear Regression: ', (mean_absolute_error(df['B'], df['Linear_Yhat'])))
-
-# Median Absolute Error (Goal: Get  𝑀𝑒𝑑𝐴𝐸  as close to 0 as possible)
 print('Median Absolute Error - Linear Regression: ', median_absolute_error(df['B'], df['Linear_Yhat']))
-
-# Root Mean Square Error (Goal: Get  𝑅𝑀𝑆𝐸  as close to 0 as possible):
 print('Root Mean Square Error - Linear Regression: ', (np.sqrt(mean_squared_error(df['B'], df['Linear_Yhat']))))
-
-# Mean Squared Log Error (Goal: Get  𝑀𝑆L𝐸  as close to 0 as possible):
 print('Mean Square Log Error - Linear Regression: ', mean_squared_log_error(df['B'], df['Linear_Yhat']))
-
-# 𝑅2 (Goal: Get  𝑅2  as close to 1 as possible):
 print('R Squared - Linear Regression: ', r2_score(df['B'], df['Linear_Yhat']))
 ```
 
@@ -287,7 +276,7 @@ ax = plt.gca()
 
 ax.scatter(x=df['A'], y=df['B'], c ='gold')
 ax.plot(df['A'], df['Linear_Yhat'], color='red', linewidth=2);
-ax.plot(df['A'], df['Linear_Yhat_ransac'], color='green', linewidth=2)
+ax.plot(df['A'], df['Yhat_ransac'], color='green', linewidth=2)
 plt.title("Linear VS. RANSAC Regression")
 plt.gca().legend(('Linear Regressor' , 'RANSAC Regressor', 'Data'), loc='upper left')
 plt.xlabel("Predictor")
@@ -315,27 +304,27 @@ Y_predict = ransac.estimator_.coef_ * X_accpt + ransac.estimator_.intercept_
 
 print('Regression Metrics :')
 print('')
-# Mean Squared Error (Goal: Get  𝑀𝑆𝐸  as close to 0 as possible):
+
 print('Mean Squared Error - Linear Regression: ', (mean_squared_error(df['B'], df['Linear_Yhat'])))
 print('Mean Squared Error - RANSAC Regression: ', (mean_squared_error(Y_accpt, Y_predict)))
 print('')
-# Mean Absolute Error (Goal: Get  𝑀𝐴𝐸  as close to 0 as possible):
+
 print('Mean Absolute Error - Linear Regression: ', (mean_absolute_error(df['B'], df['Linear_Yhat'])))
 print('Mean Absolute Error - RANSAC Regression: ', (mean_absolute_error(Y_accpt, Y_predict)))
 print('')
-# Median Absolute Error (Goal: Get  𝑀𝑒𝑑𝐴𝐸  as close to 0 as possible):
+
 print('Median Absolute Error - Linear Regression: ', median_absolute_error(df['B'], df['Linear_Yhat']))
 print('Median Absolute Error - RANSAC Regression: ', median_absolute_error(Y_accpt, Y_predict))
 print('')
-# Root Mean Square Error (Goal: Get  𝑅𝑀𝑆𝐸  as close to 0 as possible):
+
 print('Root Mean Square Error - Linear Regression: ', (np.sqrt(mean_squared_error(df['B'], df['Linear_Yhat']))))
 print('Root Mean Square Error - RANSAC Regression: ', (np.sqrt(mean_squared_error(Y_accpt, Y_predict))))
 print('')
-# Mean Squared Log Error (Goal: Get  𝑀𝑆L𝐸  as close to 0 as possible):
+
 print('Mean Square Log Error - Linear Regression: ', mean_squared_log_error(df['B'], df['Linear_Yhat']))
 print('Mean Square Log Error - RANSAC Regression: ', mean_squared_log_error(Y_accpt, Y_predict))
 print('')
-# 𝑅2 (Goal: Get  𝑅2  as close to 1 as possible):
+
 print('R Squared - Linear Regression: ', r2_score(df['B'], df['Linear_Yhat']))
 print('R Squared - RANSAC Regression: ', r2_score(Y_accpt, Y_predict))
 
