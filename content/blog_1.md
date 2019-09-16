@@ -1,6 +1,6 @@
 Title: My First Blog 
 Date: 2019-09-15
-Slug: Blog#1
+Slug: Blog_1
 
 RANdom SAmple Consensus (RANSAC) Method:
 
