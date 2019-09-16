@@ -146,7 +146,7 @@ plt.ylabel("Target")
 
 
 
-![png](output_8_1.png)
+![png](images/output_8_1.png)
 
 
 
@@ -198,7 +198,7 @@ plt.ylabel("Target")
 
 
 
-![png](output_11_1.png)
+![png](images/output_11_1.png)
 
 
 
@@ -265,7 +265,7 @@ plt.ylabel("Target");
 ```
 
 
-![png](output_15_0.png)
+![png](images/output_15_0.png)
 
 
 
@@ -284,7 +284,7 @@ plt.ylabel("Target");
 ```
 
 
-![png](output_16_0.png)
+![png](images/output_16_0.png)
 
 
 As we can see on the above plot, when ordinary Linear Regression is influenced by outliers, RANSAC isn't.
