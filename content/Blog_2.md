@@ -145,7 +145,7 @@ df
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -237,7 +237,7 @@ plt.show()
 
 
 
-![png](output_7_1.png)
+![png](images/Blog_2_image.png)
 
 
 The orange bars are the feature importances. As we could expect, the plot suggests that 5 features are informative, this confirms that Catboost can evaluate the importance of features on an artificial classification task.
@@ -307,7 +307,7 @@ true_coefs.T
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
@@ -405,7 +405,7 @@ pd.DataFrame(data=[coef, linreg.coef_, lasso.coef_], columns=['feature_0','featu
     .dataframe tbody tr th {
         vertical-align: top;
     }
-
+    
     .dataframe thead th {
         text-align: right;
     }
