@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <title>My First Blog</title>
+ <title>sklearn RANSACRegressor Method</title>
  <!-- Latest compiled and minified CSS -->
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
  <div class="container">
@@ -12,15 +12,16 @@
  <div class="container">
 <div class="row">
  <div class="col-md-8">
-  <h3>My First Blog</h3>
+  <h3>sklearn RANSACRegressor Method</h3>
   <label>2019-09-15</label>
-  <p>RANdom SAmple Consensus (RANSAC) Method:</p>
-<p>First, a little bit of history: </p>
+  <h1>RANdom SAmple Consensus (RANSAC) Method:</h1>
+<p><br></p>
+<p><strong>First, a little bit of history:</strong></p>
 <p>The RANSAC algorithm was first published by Fischler and Bolles at SRI (Stanford Research Institute) International in 1981. They used RANSAC to solve the Location Determination Problem (LDP), where the goal is to determine the points in the space that project onto an image into a set of landmarks with known locations.</p>
-<p>Today's usage: </p>
+<p><strong>Today's usage:</strong></p>
 <p>Today, it is typically used for linear and non-linear regression problems and is especially popular in the field of photogrammetric computer vision. Photogrammetry being the science of making measurements from photographs (input to photogrammetry is photographs, and the output is typically a map, a drawing, a measurement, or a 3D model of some real-world object or scene).</p>
-<p>Here is a quick description of this method: </p>
-<p>RANSAC is a non-deterministic iterative method that estimates the parameters of a machine learning algorithm from a dataset that contains outliers. For that, it divides the points in the dataset into two subsets: 1- outliers 2- inliers. </p>
+<p><strong>Here is a quick description of this method:</strong></p>
+<p>RANSAC is a non-deterministic iterative method that estimates the parameters of a machine learning algorithm from a dataset that contains outliers. For that, it divides the points in the dataset into two subsets: 1- outliers 2- inliers.</p>
 <p>The process that is used to determine inliers and outliers is the following:</p>
 <ol>
 <li>RANSAC starts by selecting a subset of points as hypothetical inliers.</li>
@@ -28,7 +29,7 @@
 <li>Model is refitted with the new inliers</li>
 <li>The RANSAC algorithm iteratively repeats until the inlier subset is large enough or reaching to the end of the iteration.</li>
 </ol>
-<p>RANSAC comes with 2 assumptions: </p>
+<p><strong>RANSAC comes with 2 assumptions:</strong></p>
 <ol>
 <li>
 <p>Data consists of inliers and outliers:
@@ -143,7 +144,7 @@
 <span class="n">Y</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">]</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;A&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
 
-<span class="n">linreg</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span> 
+<span class="n">linreg</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
 <span class="n">linreg</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">)</span>
 
 <span class="c1"># Let&#39;s print slope and intercept for our Linear Regression model:</span>
@@ -180,9 +181,9 @@
 
 
 <p><img alt="png" src="images/output_11_1.png"></p>
-<div class="highlight"><pre><span></span><span class="c1"># Let&#39;s see how our regression metrics look now: </span>
+<div class="highlight"><pre><span></span><span class="c1"># Let&#39;s see how our regression metrics look now:</span>
 
-<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">median_absolute_error</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">,</span> <span class="n">mean_squared_log_error</span> 
+<span class="kn">from</span> <span class="nn">sklearn.metrics</span> <span class="kn">import</span> <span class="n">mean_squared_error</span><span class="p">,</span> <span class="n">mean_absolute_error</span><span class="p">,</span> <span class="n">median_absolute_error</span><span class="p">,</span> <span class="n">r2_score</span><span class="p">,</span> <span class="n">mean_squared_log_error</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Mean Squared Error - Linear Regression: &#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">mean_squared_error</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Linear_Yhat&#39;</span><span class="p">])))</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Mean Absolute Error - Linear Regression: &#39;</span><span class="p">,</span> <span class="p">(</span><span class="n">mean_absolute_error</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;B&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;Linear_Yhat&#39;</span><span class="p">])))</span>
@@ -266,7 +267,7 @@ RANSAC algorythm takes the complete input, separates inliers from outliers and b
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="c1"># Finally let&#39;s compare our regression metrics, and see which model performs better: </span>
+<div class="highlight"><pre><span></span><span class="c1"># Finally let&#39;s compare our regression metrics, and see which model performs better:</span>
 
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;Regression Metrics :&#39;</span><span class="p">)</span>
 <span class="k">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
@@ -319,13 +320,11 @@ RANSAC algorythm takes the complete input, separates inliers from outliers and b
 
 
 <p>When comparing the different regression metrics, we can see that RANSAC algorythm can boost our model scores when the dataset includes a significant amount of outliers. In this specifc case, all the regression metrics scores have improved significantly.  The difference is particularly obervable on R2 score which reaches almost 89% with RANSAC regression model, when its score was below 7% with the ordinary Linear Regression model.  </p>
-<p>Conclusion:</p>
-<p>Pros:</p>
+<h2>Conclusion:</h2>
+<p><strong>Pros:</strong></p>
 <p>Linear regression models can be heavily impacted by the presence of outliers, which can come for instance from extreme values of the noise, or erroneous measurements. RANdom SAmple Consensus (RANSAC) algorithm can be used to remove sets of points from your model that do not follow the dominant pattern of the data, and as a robust machine learning algorithm, RANSAC will improve the performance of your model by estimating the parameters with a high degree of accuracy, even when a significant number of outliers are present in the data set.</p>
-<p>Cons:</p>
-<p>RANSAC usually performs poorly when the number of inliers in the dataset is less than 50%. Also, when the noise threshold is too small, the estimated parameters tend to be unstable. Finally, this algorithm removes data from the model, and in general losing data when developing models is something we want to avoid. </p>
-<div class="highlight"><pre><span></span>
-</pre></div>
+<p><strong>Cons:</strong></p>
+<p>RANSAC usually performs poorly when the number of inliers in the dataset is less than 50%. Also, when the noise threshold is too small, the estimated parameters tend to be unstable. Finally, this algorithm removes data from the model, and in general losing data when developing models is something we want to avoid.</p>
  </div>
 </div>
  </div>

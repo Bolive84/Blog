@@ -1,22 +1,23 @@
-Title: My First Blog 
+Title: sklearn RANSACRegressor Method
 Date: 2019-09-15
 Slug: Blog_1
 
-RANdom SAmple Consensus (RANSAC) Method:
+# RANdom SAmple Consensus (RANSAC) Method: #
+<br>
 
-First, a little bit of history: 
+**First, a little bit of history:**
 
 The RANSAC algorithm was first published by Fischler and Bolles at SRI (Stanford Research Institute) International in 1981. They used RANSAC to solve the Location Determination Problem (LDP), where the goal is to determine the points in the space that project onto an image into a set of landmarks with known locations.
 
 
-Today's usage: 
+**Today's usage:**
 
 Today, it is typically used for linear and non-linear regression problems and is especially popular in the field of photogrammetric computer vision. Photogrammetry being the science of making measurements from photographs (input to photogrammetry is photographs, and the output is typically a map, a drawing, a measurement, or a 3D model of some real-world object or scene).
 
 
-Here is a quick description of this method: 
+**Here is a quick description of this method:**
 
-RANSAC is a non-deterministic iterative method that estimates the parameters of a machine learning algorithm from a dataset that contains outliers. For that, it divides the points in the dataset into two subsets: 1- outliers 2- inliers. 
+RANSAC is a non-deterministic iterative method that estimates the parameters of a machine learning algorithm from a dataset that contains outliers. For that, it divides the points in the dataset into two subsets: 1- outliers 2- inliers.
 
 The process that is used to determine inliers and outliers is the following:
 
@@ -26,7 +27,7 @@ The process that is used to determine inliers and outliers is the following:
 4. The RANSAC algorithm iteratively repeats until the inlier subset is large enough or reaching to the end of the iteration.
 
 
-RANSAC comes with 2 assumptions: 
+**RANSAC comes with 2 assumptions:**
 
 1. Data consists of inliers and outliers:
 "inliers" will be data whose distribution can be explained by some set of model parameters, which can also be subject to noise, and "outliers" which are data that do not fit the model.
@@ -158,7 +159,7 @@ from sklearn.linear_model import LinearRegression
 Y = df['B']
 X = df['A'].values.reshape(-1, 1)
 
-linreg = LinearRegression() 
+linreg = LinearRegression()
 linreg.fit(X,Y)
 
 # Let's print slope and intercept for our Linear Regression model:
@@ -168,7 +169,7 @@ print("Intercept - Linear Regression:", linreg.intercept_)
 
     Slope - Linear Regression: [0.82654094]
     Intercept - Linear Regression: 66.34239236618237
-    
+
 
 
 ```python
@@ -203,9 +204,9 @@ plt.ylabel("Target")
 
 
 ```python
-# Let's see how our regression metrics look now: 
+# Let's see how our regression metrics look now:
 
-from sklearn.metrics import mean_squared_error, mean_absolute_error, median_absolute_error, r2_score, mean_squared_log_error 
+from sklearn.metrics import mean_squared_error, mean_absolute_error, median_absolute_error, r2_score, mean_squared_log_error
 
 print('Mean Squared Error - Linear Regression: ', (mean_squared_error(df['B'], df['Linear_Yhat'])))
 print('Mean Absolute Error - Linear Regression: ', (mean_absolute_error(df['B'], df['Linear_Yhat'])))
@@ -221,7 +222,7 @@ print('R Squared - Linear Regression: ', r2_score(df['B'], df['Linear_Yhat']))
     Root Mean Square Error - Linear Regression:  39.5363667908396
     Mean Square Log Error - Linear Regression:  0.4990655738288573
     R Squared - Linear Regression:  0.06861415661215686
-    
+
 
 
 ```python
@@ -242,7 +243,7 @@ print("RANSAC Regression: " , ransac.estimator_.coef_ , ',', ransac.estimator_.i
     Slope, Intercept:
     Linear Regression:  [0.82654094] , 66.34239236618237
     RANSAC Regression:  [2.01751038] , 49.361073815170585
-    
+
 
 
 ```python
@@ -300,7 +301,7 @@ Y_predict = ransac.estimator_.coef_ * X_accpt + ransac.estimator_.intercept_
 
 
 ```python
-# Finally let's compare our regression metrics, and see which model performs better: 
+# Finally let's compare our regression metrics, and see which model performs better:
 
 print('Regression Metrics :')
 print('')
@@ -331,40 +332,35 @@ print('R Squared - RANSAC Regression: ', r2_score(Y_accpt, Y_predict))
 ```
 
     Regression Metrics :
-    
+
     Mean Squared Error - Linear Regression:  1563.1242990198043
     Mean Squared Error - RANSAC Regression:  86.32715034438624
-    
+
     Mean Absolute Error - Linear Regression:  29.946349872420967
     Mean Absolute Error - RANSAC Regression:  7.53403298028855
-    
+
     Median Absolute Error - Linear Regression:  21.985884617753833
     Median Absolute Error - RANSAC Regression:  6.564924468214095
-    
+
     Root Mean Square Error - Linear Regression:  39.5363667908396
     Root Mean Square Error - RANSAC Regression:  9.291240516980832
-    
+
     Mean Square Log Error - Linear Regression:  0.4990655738288573
     Mean Square Log Error - RANSAC Regression:  0.009578999086090615
-    
+
     R Squared - Linear Regression:  0.06861415661215686
     R Squared - RANSAC Regression:  0.8891918079356032
-    
+
 
 When comparing the different regression metrics, we can see that RANSAC algorythm can boost our model scores when the dataset includes a significant amount of outliers. In this specifc case, all the regression metrics scores have improved significantly.  The difference is particularly obervable on R2 score which reaches almost 89% with RANSAC regression model, when its score was below 7% with the ordinary Linear Regression model.  
 
-Conclusion:
+## Conclusion: ##
 
-Pros:
+**Pros:**
 
 Linear regression models can be heavily impacted by the presence of outliers, which can come for instance from extreme values of the noise, or erroneous measurements. RANdom SAmple Consensus (RANSAC) algorithm can be used to remove sets of points from your model that do not follow the dominant pattern of the data, and as a robust machine learning algorithm, RANSAC will improve the performance of your model by estimating the parameters with a high degree of accuracy, even when a significant number of outliers are present in the data set.
 
 
-Cons:
+**Cons:**
 
-RANSAC usually performs poorly when the number of inliers in the dataset is less than 50%. Also, when the noise threshold is too small, the estimated parameters tend to be unstable. Finally, this algorithm removes data from the model, and in general losing data when developing models is something we want to avoid. 
-
-
-```python
-
-```
+RANSAC usually performs poorly when the number of inliers in the dataset is less than 50%. Also, when the noise threshold is too small, the estimated parameters tend to be unstable. Finally, this algorithm removes data from the model, and in general losing data when developing models is something we want to avoid.

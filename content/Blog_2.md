@@ -1,10 +1,10 @@
-Title: My Second Blog
+Title: sklearn make_classification and make_regression dataset generators
 Date: 2019-09-30
-Slug: blog2
+Slug: Blog_2
 
-**How to Generate Test Data for Machine Learning in Python using Sklearn dataset generators: Make_Regression and Make_Classification:**
-
-Good datasets may not be easy to find, and looking for, selecting, extracting, and cleaning a real-life dataset may take more time than actually understanding the algorithm you would like to test.
+# How to Generate Test Data for Machine Learning in Python using Sklearn dataset generators: Make_Regression and Make_Classification: #
+<br>
+<br>Good datasets may not be easy to find, and looking for, selecting, extracting, and cleaning a real-life dataset may take more time than actually understanding the algorithm you would like to test.
 
 Scikit-learn famous standard datasets boston, diabetes, digits, linnerud, iris, wine, and breat_cancer are often sufficient to quickly illustrate the behavior of various machine learning algorithms. However, these are small 'Toy' datasets, and in some situations, you may want to have access to more flexible datasets that would fit specific machine learning test problems, and asnwer specific questions like: can your model handle noisy labels? can your model tell you which features are redundant? what happens when redundant features, noise and imbalance are all present in your dataset?
 
@@ -145,7 +145,7 @@ df
     .dataframe tbody tr th {
         vertical-align: top;
     }
-    
+
     .dataframe thead th {
         text-align: right;
     }
@@ -237,7 +237,7 @@ plt.show()
 
 
 
-![png](images/Blog_2_image.png)
+![png](images/output_7_1.png)
 
 
 The orange bars are the feature importances. As we could expect, the plot suggests that 5 features are informative, this confirms that Catboost can evaluate the importance of features on an artificial classification task.
@@ -307,7 +307,7 @@ true_coefs.T
     .dataframe tbody tr th {
         vertical-align: top;
     }
-    
+
     .dataframe thead th {
         text-align: right;
     }
@@ -405,7 +405,7 @@ pd.DataFrame(data=[coef, linreg.coef_, lasso.coef_], columns=['feature_0','featu
     .dataframe tbody tr th {
         vertical-align: top;
     }
-    
+
     .dataframe thead th {
         text-align: right;
     }
@@ -474,16 +474,9 @@ pd.DataFrame(data=[coef, linreg.coef_, lasso.coef_], columns=['feature_0','featu
 
 This example confirms that, as expected, by imposing a constraint on the model parameters, Lasso regression embedded method allow us to visualize which variables have non-zero regression coefficients and are consequently the most strongly associated with the response variable. Obtaining a subset of predictors will reduce complexity of our our model and prevent it from over-fitting which can result in a biased and inefficient model.
 
-**Conclusion:**
+## Conclusion: ##
 
 Scikit_learn generators are quick and easy-to-handle methods to generate synthetic datasets that allow you to test and debug your algorithms. They can be really useful for better understanding the behavior of algorithms in response to changes in their parameters.
 Make_classification and make_regression are great tools to keep in your back pocket when you want to conduct experiments on classification, regression, or clustering algorithms. These generators let you generate case specific data and tune/control many dataset properties as varied as the number of features, the number of samples, if you would like to introduce some noise, some bias, change the degree of class separation, or the class weights if it is used for classification algorithms.
 
 We all know that finding a real dataset including specific combinations of criterias with known levels can be very difficult, so stop seraching and use scikit-learn's data generators!
-
-
-
-
-```python
-
-```

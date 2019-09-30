@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Blog - misc</title><link href="https://Bolive84.github.io/Blog/" rel="alternate"></link><link href="https://Bolive84.github.io/Blog/feeds/misc.atom.xml" rel="self"></link><id>https://Bolive84.github.io/Blog/</id><updated>2019-09-30T00:00:00-04:00</updated><entry><title>My Second Blog</title><link href="https://Bolive84.github.io/Blog/blog2.html" rel="alternate"></link><published>2019-09-30T00:00:00-04:00</published><updated>2019-09-30T00:00:00-04:00</updated><author><name>Benoit Olive</name></author><id>tag:bolive84.github.io,2019-09-30:/Blog/blog2.html</id><summary type="html">&lt;p&gt;&lt;strong&gt;How to Generate Test Data for Machine Learning in Python using Sklearn dataset generators: Make_Regression and Make_Classification:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Good datasets may not be easy to find, and looking for, selecting, extracting, and cleaning a real-life dataset may take more time than actually understanding the algorithm you would like to test.&lt;/p&gt;
-&lt;p&gt;Scikit-learn …&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;strong&gt;How to Generate Test Data for Machine Learning in Python using Sklearn dataset generators: Make_Regression and Make_Classification:&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;Good datasets may not be easy to find, and looking for, selecting, extracting, and cleaning a real-life dataset may take more time than actually understanding the algorithm you would like to test.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Blog - misc</title><link href="https://Bolive84.github.io/Blog/" rel="alternate"></link><link href="https://Bolive84.github.io/Blog/feeds/misc.atom.xml" rel="self"></link><id>https://Bolive84.github.io/Blog/</id><updated>2019-09-30T00:00:00-04:00</updated><entry><title>sklearn make_classification and make_regression dataset generators</title><link href="https://Bolive84.github.io/Blog/Blog_2.html" rel="alternate"></link><published>2019-09-30T00:00:00-04:00</published><updated>2019-09-30T00:00:00-04:00</updated><author><name>Benoit Olive</name></author><id>tag:bolive84.github.io,2019-09-30:/Blog/Blog_2.html</id><summary type="html">&lt;h1&gt;How to Generate Test Data for Machine Learning in Python using Sklearn dataset generators: Make_Regression and Make_Classification:&lt;/h1&gt;
+&lt;p&gt;&lt;br&gt;
+&lt;br&gt;Good datasets may not be easy to find, and looking for, selecting, extracting, and cleaning a real-life dataset may take more time than actually understanding the algorithm you would like to test.&lt;/p&gt;
+&lt;p&gt;Scikit-learn …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;How to Generate Test Data for Machine Learning in Python using Sklearn dataset generators: Make_Regression and Make_Classification:&lt;/h1&gt;
+&lt;p&gt;&lt;br&gt;
+&lt;br&gt;Good datasets may not be easy to find, and looking for, selecting, extracting, and cleaning a real-life dataset may take more time than actually understanding the algorithm you would like to test.&lt;/p&gt;
 &lt;p&gt;Scikit-learn famous standard datasets boston, diabetes, digits, linnerud, iris, wine, and breat_cancer are often sufficient to quickly illustrate the behavior of various machine learning algorithms. However, these are small 'Toy' datasets, and in some situations, you may want to have access to more flexible datasets that would fit specific machine learning test problems, and asnwer specific questions like: can your model handle noisy labels? can your model tell you which features are redundant? what happens when redundant features, noise and imbalance are all present in your dataset?&lt;/p&gt;
 &lt;p&gt;And guess what? scikit-learn offers you that option too! Your best friend also includes random sample generators allowing you to build synthetic datasets with different distributions and profiles to help you experiment your classification, regression, and clustering algorithms.&lt;/p&gt;
 &lt;p&gt;In this blog we will try to illustrate how make_regression and make_classification sample generators work.&lt;/p&gt;
@@ -213,7 +215,7 @@
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;p&gt;&lt;img alt="png" src="images/Blog_2_image.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="png" src="images/output_7_1.png"&gt;&lt;/p&gt;
 &lt;p&gt;The orange bars are the feature importances. As we could expect, the plot suggests that 5 features are informative, this confirms that Catboost can evaluate the importance of features on an artificial classification task.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Section 2: make_regression:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;In this example, we are going to use scikit-learn's make_regression to compare the linear regression and lasso regression models coefficients, to see which of this method performs the best in terms of feature selection, using coefficients.&lt;/p&gt;
@@ -424,20 +426,20 @@
 &lt;/div&gt;
 
 &lt;p&gt;This example confirms that, as expected, by imposing a constraint on the model parameters, Lasso regression embedded method allow us to visualize which variables have non-zero regression coefficients and are consequently the most strongly associated with the response variable. Obtaining a subset of predictors will reduce complexity of our our model and prevent it from over-fitting which can result in a biased and inefficient model.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;Conclusion:&lt;/strong&gt;&lt;/p&gt;
+&lt;h2&gt;Conclusion:&lt;/h2&gt;
 &lt;p&gt;Scikit_learn generators are quick and easy-to-handle methods to generate synthetic datasets that allow you to test and debug your algorithms. They can be really useful for better understanding the behavior of algorithms in response to changes in their parameters.
 Make_classification and make_regression are great tools to keep in your back pocket when you want to conduct experiments on classification, regression, or clustering algorithms. These generators let you generate case specific data and tune/control many dataset properties as varied as the number of features, the number of samples, if you would like to introduce some noise, some bias, change the degree of class separation, or the class weights if it is used for classification algorithms.&lt;/p&gt;
-&lt;p&gt;We all know that finding a real dataset including specific combinations of criterias with known levels can be very difficult, so stop seraching and use scikit-learn's data generators!&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</content></entry><entry><title>My First Blog</title><link href="https://Bolive84.github.io/Blog/Blog_1.html" rel="alternate"></link><published>2019-09-15T00:00:00-04:00</published><updated>2019-09-15T00:00:00-04:00</updated><author><name>Benoit Olive</name></author><id>tag:bolive84.github.io,2019-09-15:/Blog/Blog_1.html</id><summary type="html">&lt;p&gt;RANdom SAmple Consensus (RANSAC) Method:&lt;/p&gt;
-&lt;p&gt;First, a little bit of history: &lt;/p&gt;
-&lt;p&gt;The RANSAC algorithm was first published by Fischler and Bolles at SRI (Stanford Research Institute) International in 1981. They used RANSAC to solve the Location Determination Problem (LDP), where the goal is to determine the points in the space …&lt;/p&gt;</summary><content type="html">&lt;p&gt;RANdom SAmple Consensus (RANSAC) Method:&lt;/p&gt;
-&lt;p&gt;First, a little bit of history: &lt;/p&gt;
+&lt;p&gt;We all know that finding a real dataset including specific combinations of criterias with known levels can be very difficult, so stop seraching and use scikit-learn's data generators!&lt;/p&gt;</content></entry><entry><title>sklearn RANSACRegressor Method</title><link href="https://Bolive84.github.io/Blog/Blog_1.html" rel="alternate"></link><published>2019-09-15T00:00:00-04:00</published><updated>2019-09-15T00:00:00-04:00</updated><author><name>Benoit Olive</name></author><id>tag:bolive84.github.io,2019-09-15:/Blog/Blog_1.html</id><summary type="html">&lt;h1&gt;RANdom SAmple Consensus (RANSAC) Method:&lt;/h1&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;First, a little bit of history:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;The RANSAC algorithm was first published by Fischler and Bolles at SRI (Stanford Research Institute) International in 1981. They used RANSAC to solve the Location Determination Problem (LDP), where the goal is to determine the points in the space …&lt;/p&gt;</summary><content type="html">&lt;h1&gt;RANdom SAmple Consensus (RANSAC) Method:&lt;/h1&gt;
+&lt;p&gt;&lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;First, a little bit of history:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;The RANSAC algorithm was first published by Fischler and Bolles at SRI (Stanford Research Institute) International in 1981. They used RANSAC to solve the Location Determination Problem (LDP), where the goal is to determine the points in the space that project onto an image into a set of landmarks with known locations.&lt;/p&gt;
-&lt;p&gt;Today's usage: &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Today's usage:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Today, it is typically used for linear and non-linear regression problems and is especially popular in the field of photogrammetric computer vision. Photogrammetry being the science of making measurements from photographs (input to photogrammetry is photographs, and the output is typically a map, a drawing, a measurement, or a 3D model of some real-world object or scene).&lt;/p&gt;
-&lt;p&gt;Here is a quick description of this method: &lt;/p&gt;
-&lt;p&gt;RANSAC is a non-deterministic iterative method that estimates the parameters of a machine learning algorithm from a dataset that contains outliers. For that, it divides the points in the dataset into two subsets: 1- outliers 2- inliers. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Here is a quick description of this method:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;RANSAC is a non-deterministic iterative method that estimates the parameters of a machine learning algorithm from a dataset that contains outliers. For that, it divides the points in the dataset into two subsets: 1- outliers 2- inliers.&lt;/p&gt;
 &lt;p&gt;The process that is used to determine inliers and outliers is the following:&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;RANSAC starts by selecting a subset of points as hypothetical inliers.&lt;/li&gt;
@@ -445,7 +447,7 @@ Make_classification and make_regression are great tools to keep in your back poc
 &lt;li&gt;Model is refitted with the new inliers&lt;/li&gt;
 &lt;li&gt;The RANSAC algorithm iteratively repeats until the inlier subset is large enough or reaching to the end of the iteration.&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;RANSAC comes with 2 assumptions: &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;RANSAC comes with 2 assumptions:&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;Data consists of inliers and outliers:
@@ -560,7 +562,7 @@ Make_classification and make_regression are great tools to keep in your back poc
 &lt;span class="n"&gt;Y&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;X&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;A&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;values&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;reshape&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
-&lt;span class="n"&gt;linreg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;LinearRegression&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt; 
+&lt;span class="n"&gt;linreg&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;LinearRegression&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;span class="n"&gt;linreg&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="n"&gt;Y&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 &lt;span class="c1"&gt;# Let&amp;#39;s print slope and intercept for our Linear Regression model:&lt;/span&gt;
@@ -597,9 +599,9 @@ Make_classification and make_regression are great tools to keep in your back poc
 
 
 &lt;p&gt;&lt;img alt="png" src="images/output_11_1.png"&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Let&amp;#39;s see how our regression metrics look now: &lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Let&amp;#39;s see how our regression metrics look now:&lt;/span&gt;
 
-&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.metrics&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;mean_squared_error&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mean_absolute_error&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;median_absolute_error&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;r2_score&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mean_squared_log_error&lt;/span&gt; 
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.metrics&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;mean_squared_error&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mean_absolute_error&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;median_absolute_error&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;r2_score&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;mean_squared_log_error&lt;/span&gt;
 
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Mean Squared Error - Linear Regression: &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mean_squared_error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Linear_Yhat&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])))&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Mean Absolute Error - Linear Regression: &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;mean_absolute_error&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;B&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;df&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Linear_Yhat&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])))&lt;/span&gt;
@@ -683,7 +685,7 @@ RANSAC algorythm takes the complete input, separates inliers from outliers and b
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Finally let&amp;#39;s compare our regression metrics, and see which model performs better: &lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Finally let&amp;#39;s compare our regression metrics, and see which model performs better:&lt;/span&gt;
 
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Regression Metrics :&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
@@ -736,10 +738,8 @@ RANSAC algorythm takes the complete input, separates inliers from outliers and b
 
 
 &lt;p&gt;When comparing the different regression metrics, we can see that RANSAC algorythm can boost our model scores when the dataset includes a significant amount of outliers. In this specifc case, all the regression metrics scores have improved significantly.  The difference is particularly obervable on R2 score which reaches almost 89% with RANSAC regression model, when its score was below 7% with the ordinary Linear Regression model.  &lt;/p&gt;
-&lt;p&gt;Conclusion:&lt;/p&gt;
-&lt;p&gt;Pros:&lt;/p&gt;
+&lt;h2&gt;Conclusion:&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Pros:&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;Linear regression models can be heavily impacted by the presence of outliers, which can come for instance from extreme values of the noise, or erroneous measurements. RANdom SAmple Consensus (RANSAC) algorithm can be used to remove sets of points from your model that do not follow the dominant pattern of the data, and as a robust machine learning algorithm, RANSAC will improve the performance of your model by estimating the parameters with a high degree of accuracy, even when a significant number of outliers are present in the data set.&lt;/p&gt;
-&lt;p&gt;Cons:&lt;/p&gt;
-&lt;p&gt;RANSAC usually performs poorly when the number of inliers in the dataset is less than 50%. Also, when the noise threshold is too small, the estimated parameters tend to be unstable. Finally, this algorithm removes data from the model, and in general losing data when developing models is something we want to avoid. &lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;</content></entry></feed>
+&lt;p&gt;&lt;strong&gt;Cons:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;RANSAC usually performs poorly when the number of inliers in the dataset is less than 50%. Also, when the noise threshold is too small, the estimated parameters tend to be unstable. Finally, this algorithm removes data from the model, and in general losing data when developing models is something we want to avoid.&lt;/p&gt;</content></entry></feed>
