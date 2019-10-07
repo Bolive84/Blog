@@ -37,10 +37,6 @@ File can be found here: https://www.kaggle.com/pierremegret/dialogue-lines-of-th
 ![png](images/Blog_3/Simpsons_magnifying.png)
 ```
 
-    '[Simpsons_magnifying.png]' is not recognized as an internal or external command,
-    operable program or batch file.
-
-
 <font color='darkblue'> <h3> 1. Import data and libraries </h3> </font>
 
 

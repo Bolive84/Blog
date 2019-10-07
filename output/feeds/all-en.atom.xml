@@ -28,11 +28,6 @@ The &lt;code&gt;.csv&lt;/code&gt; file is about 9MB, and includes more than 150K
 &lt;/pre&gt;&lt;/div&gt;
 
 
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;[Simpsons_magnifying.png]&amp;#39;&lt;/span&gt; &lt;span class="k"&gt;is&lt;/span&gt; &lt;span class="k"&gt;not&lt;/span&gt; &lt;span class="n"&gt;recognized&lt;/span&gt; &lt;span class="k"&gt;as&lt;/span&gt; &lt;span class="n"&gt;an&lt;/span&gt; &lt;span class="n"&gt;internal&lt;/span&gt; &lt;span class="k"&gt;or&lt;/span&gt; &lt;span class="k"&gt;external&lt;/span&gt; &lt;span class="n"&gt;command&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;span class="n"&gt;operable&lt;/span&gt; &lt;span class="n"&gt;program&lt;/span&gt; &lt;span class="k"&gt;or&lt;/span&gt; &lt;span class="n"&gt;batch&lt;/span&gt; &lt;span class="n"&gt;file&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
 &lt;p&gt;&lt;font color='darkblue'&gt; &lt;h3&gt; 1. Import data and libraries &lt;/h3&gt; &lt;/font&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Install/upgrade Gensim if needed:&lt;/span&gt;
 &lt;span class="c1"&gt;# !pip install gensim --upgrade&lt;/span&gt;
