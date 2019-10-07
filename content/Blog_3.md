@@ -34,7 +34,7 @@ File can be found here: https://www.kaggle.com/pierremegret/dialogue-lines-of-th
 
 
 ```python
-![png](images/Blog_3/Simpsons_magnifying)
+![png](images/Blog_3/Simpsons_magnifying.png)
 ```
 
     '[Simpsons_magnifying.png]' is not recognized as an internal or external command,
@@ -1058,4 +1058,4 @@ This is correct, Marge is Homer female counterpart!
 
 In this quick introduction to word embeddings I tried to describe as simply as possible the different steps you will need to go through if you want to train a word vectorizer with your own data. In this example, I chose to use Google's `word2vec` method, but other vectorizers can be available on sklearn's library as `CountVectorizer` , `HashingVectorizer` or `TfidfVectorizer`. Word embedding provides to machines much more information about words than has previously been possible using traditional representations of words. Word vectors are essential for solving NLP problems such as speech recognition, sentiment analysis, named entity recognition, spam filtering, and machine translation, they are an amazingly powerful concept and applications in this field are practically infinite. The importance of word embeddings in deep learning becomes more and more evident by looking at the number of researches in the field, so I hope that this tutorial was useful for you and helped you to better understand the mechanisms of these methods.
 
-![jpg](images/Blog_3/simpsons460)
+![jpg](images/Blog_3/simpsons460.jpg)
