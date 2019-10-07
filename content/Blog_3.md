@@ -32,10 +32,7 @@ The `.csv` file is about 9MB, and includes more than 150K lines of dialogues bet
 
 File can be found here: https://www.kaggle.com/pierremegret/dialogue-lines-of-the-simpsons
 
-
-```python
 ![png](images/Blog_3/Simpsons_magnifying.png)
-```
 
 <font color='darkblue'> <h3> 1. Import data and libraries </h3> </font>
 

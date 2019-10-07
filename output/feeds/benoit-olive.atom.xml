@@ -24,10 +24,7 @@
 &lt;p&gt;I could find on Kaggle this dataset containing script lines for approximately 600 Simpsons episodes, dating back to 1989.
 The &lt;code&gt;.csv&lt;/code&gt; file is about 9MB, and includes more than 150K lines of dialogues between the different characters of the series, data is organized in 2 columns, each row showing the character's name and the text actually spoken, A-MA-ZING!&lt;/p&gt;
 &lt;p&gt;File can be found here: https://www.kaggle.com/pierremegret/dialogue-lines-of-the-simpsons&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="err"&gt;!&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;png&lt;/span&gt;&lt;span class="p"&gt;](&lt;/span&gt;&lt;span class="n"&gt;images&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Blog_3&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;Simpsons_magnifying&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;png&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;/pre&gt;&lt;/div&gt;
-
-
+&lt;p&gt;&lt;img alt="png" src="images/Blog_3/Simpsons_magnifying.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;font color='darkblue'&gt; &lt;h3&gt; 1. Import data and libraries &lt;/h3&gt; &lt;/font&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="c1"&gt;# Install/upgrade Gensim if needed:&lt;/span&gt;
 &lt;span class="c1"&gt;# !pip install gensim --upgrade&lt;/span&gt;
