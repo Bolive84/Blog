@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+  <title>sklearn make_classification and make_regression dataset generators</title>
+
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta name="generator" content="Pelican" />
+<link href="https://Bolive84.github.io/Blog/Blog_2.html" rel="canonical" />
+  <!-- Feed -->
+        <link href="https://Bolive84.github.io/Blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Benoit's Blog Full Atom Feed" />
+          <link href="https://Bolive84.github.io/Blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Benoit's Blog Categories Atom Feed" />
+
+  <link href="https://Bolive84.github.io/Blog/theme/css/style.css" type="text/css" rel="stylesheet" />
+
+  <!-- Code highlight color scheme -->
+      <link href="https://Bolive84.github.io/Blog/theme/css/code_blocks/github.css" rel="stylesheet">
+
+
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+
+    <meta name="description" content="How to Generate Test Data for Machine Learning in Python using Sklearn dataset generators: Make_Regression and Make_Classification: Good...">
+
+    <meta name="author" content="Benoit Olive">
+
+
+
+
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Benoit's Blog"/>
+<meta property="og:title" content="sklearn make_classification and make_regression dataset generators"/>
+<meta property="og:description" content="How to Generate Test Data for Machine Learning in Python using Sklearn dataset generators: Make_Regression and Make_Classification: Good..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://Bolive84.github.io/Blog/Blog_2.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2019-09-30 00:00:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://Bolive84.github.io/Blog/author/benoit-olive.html">
+<meta property="article:section" content="misc"/>
+<meta property="og:image" content="https://Bolive84.github.io/Blog/theme/images/post-bg.jpg">
+
+<!-- Twitter Card -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "name": "sklearn make_classification and make_regression dataset generators",
+  "headline": "sklearn make_classification and make_regression dataset generators",
+  "datePublished": "2019-09-30 00:00:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Benoit Olive",
+    "url": "https://Bolive84.github.io/Blog/author/benoit-olive.html"
+  },
+  "image": "https://Bolive84.github.io/Blog/theme/images/post-bg.jpg",
+  "url": "https://Bolive84.github.io/Blog/Blog_2.html",
+  "description": "How to Generate Test Data for Machine Learning in Python using Sklearn dataset generators: Make_Regression and Make_Classification: Good..."
+}
+</script>
+</head>
+<!-- TODO : Body class -->
+<body class="home-template">
+
+<nav id="menu">
+  <a class="close-button">Close</a>
+  <div class="nav-wrapper">
+    <p class="nav-label">Menu</p>
+    <ul>
+
+
+    </ul>
+  </div>
+</nav>
+    <!-- Progressbar -->
+    <div class="progress-container">
+        <span class="progress-bar"></span>
+    </div>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="post-header" >
+      <div class="inner">
+        <nav id="navigation">
+            <span id="home-button" class="nav-button">
+                <a class="home-button" href="https://Bolive84.github.io/Blog/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+            </span>
+          <span id="menu-button" class="nav-button">
+            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+          </span>
+        </nav>
+        <h1 class="post-title">sklearn make_classification and make_regression dataset generators</h1>
+        <!-- TODO : Proper class for headline -->
+        <span class="post-meta">
+                <a href="https://Bolive84.github.io/Blog/author/benoit-olive.html">Benoit Olive</a>
+            | <time datetime="Mon 30 September 2019">Mon 30 September 2019</time>
+        </span>
+        <!-- TODO : Modified check -->
+      </div>
+    </header>
+
+  <section id="wrapper">
+    <a class="hidden-close"></a>
+
+    <!-- Post content -->
+    <main class="content" role="main">
+        <article class="post">
+        <div class="inner">
+            <section class="post-content">
+                <h1>How to Generate Test Data for Machine Learning in Python using Sklearn dataset generators: Make_Regression and Make_Classification:</h1>
+<p><br>
+<br>Good datasets may not be easy to find, and looking for, selecting, extracting, and cleaning a real-life dataset may take more time than actually understanding the algorithm you would like to test.</p>
+<p>Scikit-learn famous standard datasets boston, diabetes, digits, linnerud, iris, wine, and breat_cancer are often sufficient to quickly illustrate the behavior of various machine learning algorithms. However, these are small 'Toy' datasets, and in some situations, you may want to have access to more flexible datasets that would fit specific machine learning test problems, and asnwer specific questions like: can your model handle noisy labels? can your model tell you which features are redundant? what happens when redundant features, noise and imbalance are all present in your dataset?</p>
+<p>And guess what? scikit-learn offers you that option too! Your best friend also includes random sample generators allowing you to build synthetic datasets with different distributions and profiles to help you experiment your classification, regression, and clustering algorithms.</p>
+<p>In this blog we will try to illustrate how make_regression and make_classification sample generators work.</p>
+<p><strong>Section 1: make_classification:</strong></p>
+<p>Make_classification create multiclass datasets by allocating each class one or more normally-distributed clusters of points. It introduces interdependence between these features and adds various types of further noise to the data.</p>
+<p>Here are make_classification default parameters: (n_samples=100, n_features=20, n_informative=2, n_redundant=2, n_repeated=0, n_classes=2, n_clusters_per_class=2, weights=None, flip_y=0.01, class_sep=1.0, hypercube=True, shift=0.0, scale=1.0, shuffle=True, random_state=None)</p>
+<p>The main parameters you might want to play with are the following:
+<br>n_samples : The number of samples generated in the dataset.
+<br>n_features : The total number of features generated.
+<br>n_informative : The number of informative features.
+<br>n_redundant : The number of redundant features. These features are generated as random linear combinations of the informative features.
+<br>n_repeated : The number of duplicated features, drawn randomly from the informative and the redundant features.
+<br>n_classes : The number of classes (or labels) of the classification problem.
+<br>n_clusters_per_class : The number of clusters per class.
+<br>weights : The proportions of samples assigned to each class.
+<br>class_sep : Larger values spread out the clusters/classes and make the classification task easier.
+<br>random_state : to make output reproducible.<br></p>
+<p>In the example below, we are going to genenate a synthetic classification problem that includes 5 informative features and double-check whether Catboost classifier can spot them and evaluate their relative importance.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Let&#39;s build a classification task using 5 informative features. Our goal being to see if Catboost is able to spot and rank informative features</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span>
+    <span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="c1"># generates 1000 samples</span>
+    <span class="n">n_features</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="c1"># generates 10 features</span>
+    <span class="n">n_informative</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="c1"># only 1/2 of the features will actually be useful for this classification problem</span>
+    <span class="n">n_redundant</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="c1"># none of the features will be redundant</span>
+    <span class="n">n_repeated</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="c1"># none of the features will be repeated</span>
+    <span class="n">n_classes</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="c1"># I want the generator to only create 2 classes</span>
+    <span class="n">n_clusters_per_class</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># each class will includes only 1 cluster</span>
+    <span class="n">weights</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="c1"># I want my data to be balanced</span>
+    <span class="n">random_state</span><span class="o">=</span><span class="mi">2</span> <span class="c1"># let&#39;s make this problem reproducible</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Make the usual train-test split:</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+
+<span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Import Catboost, instantiate it and fit it to generated data:</span>
+<span class="kn">from</span> <span class="nn">catboost</span> <span class="kn">import</span> <span class="n">CatBoostClassifier</span>
+
+<span class="n">cbc</span> <span class="o">=</span> <span class="n">CatBoostClassifier</span><span class="p">(</span><span class="n">iterations</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">eval_metric</span><span class="o">=</span><span class="s1">&#39;Precision&#39;</span><span class="p">)</span>
+
+<span class="n">cbc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+
+<span class="c1"># Pull up feature importances:</span>
+<span class="n">importance</span> <span class="o">=</span> <span class="n">cbc</span><span class="o">.</span><span class="n">feature_importances_</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="mi">0</span><span class="o">:</span>  <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9190751</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">128</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mf">3.71</span><span class="n">s</span>
+<span class="mi">1</span><span class="o">:</span>  <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9050279</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">143</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">2</span><span class="n">s</span>
+<span class="mi">2</span><span class="o">:</span>  <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9209040</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">154</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mf">1.39</span><span class="n">s</span>
+<span class="mi">3</span><span class="o">:</span>  <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9339080</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">164</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mf">1.06</span><span class="n">s</span>
+<span class="mi">4</span><span class="o">:</span>  <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9394813</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">173</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">865</span><span class="n">ms</span>
+<span class="mi">5</span><span class="o">:</span>  <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9340974</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">183</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">733</span><span class="n">ms</span>
+<span class="mi">6</span><span class="o">:</span>  <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9420290</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">193</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">634</span><span class="n">ms</span>
+<span class="mi">7</span><span class="o">:</span>  <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9394813</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">202</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">556</span><span class="n">ms</span>
+<span class="mi">8</span><span class="o">:</span>  <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9421965</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">211</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">493</span><span class="n">ms</span>
+<span class="mi">9</span><span class="o">:</span>  <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9421965</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">220</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">440</span><span class="n">ms</span>
+<span class="mi">10</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9394813</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">230</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">397</span><span class="n">ms</span>
+<span class="mi">11</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9394813</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">239</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">358</span><span class="n">ms</span>
+<span class="mi">12</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9421965</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">248</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">324</span><span class="n">ms</span>
+<span class="mi">13</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9367816</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">257</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">294</span><span class="n">ms</span>
+<span class="mi">14</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9478261</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">266</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">266</span><span class="n">ms</span>
+<span class="mi">15</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9478261</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">275</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">241</span><span class="n">ms</span>
+<span class="mi">16</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9450867</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">284</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">217</span><span class="n">ms</span>
+<span class="mi">17</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9478261</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">293</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">195</span><span class="n">ms</span>
+<span class="mi">18</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9449275</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">302</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">175</span><span class="n">ms</span>
+<span class="mi">19</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9449275</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">314</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">157</span><span class="n">ms</span>
+<span class="mi">20</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9504373</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">325</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">139</span><span class="n">ms</span>
+<span class="mi">21</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9476744</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">335</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">122</span><span class="n">ms</span>
+<span class="mi">22</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9478261</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">344</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">105</span><span class="n">ms</span>
+<span class="mi">23</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9561404</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">353</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mf">88.3</span><span class="n">ms</span>
+<span class="mi">24</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9588235</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">362</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mf">72.4</span><span class="n">ms</span>
+<span class="mi">25</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9588235</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">371</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mf">57.1</span><span class="n">ms</span>
+<span class="mi">26</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9617647</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">380</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mf">42.2</span><span class="n">ms</span>
+<span class="mi">27</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9589443</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">389</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mf">27.8</span><span class="n">ms</span>
+<span class="mi">28</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9589443</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">398</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mf">13.7</span><span class="n">ms</span>
+<span class="mi">29</span><span class="o">:</span> <span class="n">learn</span><span class="o">:</span> <span class="mf">0.9589443</span>    <span class="n">total</span><span class="o">:</span> <span class="mi">407</span><span class="n">ms</span>    <span class="n">remaining</span><span class="o">:</span> <span class="mi">0</span><span class="n">us</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Display feature importances in pandas dataframe:</span>
+<span class="n">features</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;feature_0&#39;</span><span class="p">,</span><span class="s1">&#39;feature_1&#39;</span><span class="p">,</span><span class="s1">&#39;feature_2&#39;</span><span class="p">,</span><span class="s1">&#39;feature_3&#39;</span><span class="p">,</span><span class="s1">&#39;feature_4&#39;</span><span class="p">,</span><span class="s1">&#39;feature_5&#39;</span><span class="p">,</span><span class="s1">&#39;feature_6&#39;</span><span class="p">,</span><span class="s1">&#39;feature_7&#39;</span><span class="p">,</span><span class="s1">&#39;feature_8&#39;</span><span class="p">,</span><span class="s1">&#39;feature_9&#39;</span><span class="p">]</span>
+<span class="n">relative_score</span> <span class="o">=</span> <span class="n">cbc</span><span class="o">.</span><span class="n">feature_importances_</span>
+
+<span class="n">d</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;Feature&#39;</span><span class="p">:</span> <span class="n">features</span><span class="p">,</span> <span class="s2">&quot;Feature Importance&quot;</span><span class="p">:</span> <span class="n">relative_score</span><span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Feature ranking:&quot;</span><span class="p">)</span>
+<span class="n">df</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">Feature</span> <span class="n">ranking</span><span class="p">:</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>Feature</th>
+      <th>Feature Importance</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>feature_0</td>
+      <td>0.651835</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>feature_1</td>
+      <td>0.954872</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>feature_2</td>
+      <td>7.824673</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>feature_3</td>
+      <td>45.012910</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>feature_4</td>
+      <td>13.594171</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>feature_5</td>
+      <td>0.756293</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>feature_6</td>
+      <td>0.592782</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>feature_7</td>
+      <td>0.667226</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>feature_8</td>
+      <td>23.489231</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>feature_9</td>
+      <td>6.456008</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><span class="c1"># Return the indices and sort them.</span>
+<span class="n">indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">importance</span><span class="p">)[::</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+<span class="c1"># Print the feature ranking</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Feature ranking plotted:&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot feature importances:</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Feature importances&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">importance</span><span class="p">[</span><span class="n">indices</span><span class="p">],</span>
+       <span class="n">color</span><span class="o">=</span><span class="s2">&quot;orange&quot;</span><span class="p">,</span> <span class="n">align</span><span class="o">=</span><span class="s2">&quot;center&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]),</span> <span class="n">indices</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">X_train</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">Feature</span> <span class="n">ranking</span> <span class="n">plotted</span><span class="p">:</span>
+</pre></div>
+
+
+<p><img alt="png" src="images/output_7_1.png"></p>
+<p>The orange bars are the feature importances. As we could expect, the plot suggests that 5 features are informative, this confirms that Catboost can evaluate the importance of features on an artificial classification task.</p>
+<p><strong>Section 2: make_regression:</strong></p>
+<p>In this example, we are going to use scikit-learn's make_regression to compare the linear regression and lasso regression models coefficients, to see which of this method performs the best in terms of feature selection, using coefficients.</p>
+<p>Here are make_regression default parameters: (n_samples=100, n_features=100, n_informative=10, n_targets=1, bias=0.0, effective_rank=None, tail_strength=0.5, noise=0.0, shuffle=True, coef=False, random_state=None)</p>
+<p>The parameters you are most likely to use are the following:
+<br>n_samples : The number of samples generated in the dataset.
+<br>n_features : The total number of features generated.
+<br>n_informative : The number of informative features.
+<br>n_targets : The number of targets generated.
+<br>bias : The bias term in the underlying linear model.
+<br>noise : The standard deviation of the gaussian noise applied to the output.
+<br>coef : Can be set to 'True' to return the coefficients of the underlying linear model.
+<br>random_state : to make output reproducible.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_regression</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">seaborn</span> <span class="kn">as</span> <span class="nn">sns</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">Lasso</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Let&#39;s build a regression problem using 5 informative features. Our goal being to see if Lasso regularization method is more efficient than the classic Linear Regression to extract those features which contribute the most to the model training</span>
+
+<span class="n">X</span><span class="p">,</span><span class="n">y</span><span class="p">,</span> <span class="n">coef</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span>
+        <span class="n">n_samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="c1"># generates 1000 samples</span>
+        <span class="n">n_features</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="c1"># generates 10 features</span>
+        <span class="n">n_informative</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="c1"># only 1/2 of the features will actually be useful for this classification problem</span>
+        <span class="n">n_targets</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="c1"># we will need only one target for this example</span>
+        <span class="n">bias</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="c1"># we do not need to introduce any bias for this case</span>
+        <span class="n">noise</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="c1"># let&#39;s introduce some noise</span>
+        <span class="n">coef</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="c1"># we will need the generator to return the coefficients of the linear model generated</span>
+        <span class="n">random_state</span><span class="o">=</span><span class="mi">1</span> <span class="c1"># let&#39;s make the output reproducible</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Let&#39;s show in a dataframe the true coefficients made by our make_regression generator:</span>
+<span class="n">true_coefs</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">coef</span><span class="p">,</span> <span class="n">columns</span> <span class="o">=</span><span class="p">[</span><span class="s1">&#39;true_coefs&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;feature_0&#39;</span><span class="p">,</span><span class="s1">&#39;feature_1&#39;</span><span class="p">,</span><span class="s1">&#39;feature_2&#39;</span><span class="p">,</span><span class="s1">&#39;feature_3&#39;</span><span class="p">,</span><span class="s1">&#39;feature_4&#39;</span><span class="p">,</span><span class="s1">&#39;feature_5&#39;</span><span class="p">,</span><span class="s1">&#39;feature_6&#39;</span><span class="p">,</span><span class="s1">&#39;feature_7&#39;</span><span class="p">,</span><span class="s1">&#39;feature_8&#39;</span><span class="p">,</span><span class="s1">&#39;feature_9&#39;</span><span class="p">])</span>
+<span class="n">true_coefs</span><span class="o">.</span><span class="n">T</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature_0</th>
+      <th>feature_1</th>
+      <th>feature_2</th>
+      <th>feature_3</th>
+      <th>feature_4</th>
+      <th>feature_5</th>
+      <th>feature_6</th>
+      <th>feature_7</th>
+      <th>feature_8</th>
+      <th>feature_9</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>true_coefs</th>
+      <td>0.0</td>
+      <td>26.746067</td>
+      <td>3.285346</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>86.50811</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>93.322255</td>
+      <td>12.444828</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><span class="c1"># Let&#39;s make the usual train-test split:</span>
+<span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LinearRegression</span><span class="p">,</span> <span class="n">Lasso</span>
+
+<span class="n">X_train2</span><span class="p">,</span> <span class="n">X_test2</span><span class="p">,</span> <span class="n">y_train2</span><span class="p">,</span> <span class="n">y_test2</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.33</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">42</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Let&#39;s find the best alpha (=regularization strength) for Lasso:</span>
+<span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LassoCV</span>
+
+<span class="c1"># Set up a list of Lasso alphas to check.</span>
+<span class="n">best_alpha_lasso</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.1</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+
+<span class="c1"># Cross-validate over our list of Lasso alphas.</span>
+<span class="n">lasso_model</span> <span class="o">=</span> <span class="n">LassoCV</span><span class="p">(</span><span class="n">alphas</span><span class="o">=</span><span class="n">best_alpha_lasso</span><span class="p">,</span> <span class="n">cv</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c1"># Fit model using best Lasso alphas.</span>
+<span class="n">lasso_model</span> <span class="o">=</span> <span class="n">lasso_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train2</span><span class="p">,</span> <span class="n">y_train2</span><span class="p">)</span>
+<span class="n">lasso_optimal_alpha</span> <span class="o">=</span> <span class="n">lasso_model</span><span class="o">.</span><span class="n">alpha_</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Best alpha for Lasso: &quot;</span> <span class="p">,</span> <span class="n">lasso_optimal_alpha</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nv">Best</span> <span class="nv">alpha</span> <span class="k">for</span> <span class="nv">Lasso</span>:  <span class="mi">20</span>.<span class="mi">28181818181818</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Compare Lasso&#39;s coefficients to classic Linear Regression&#39;s ones:</span>
+<span class="n">linreg</span> <span class="o">=</span> <span class="n">LinearRegression</span><span class="p">()</span>
+<span class="n">lasso</span> <span class="o">=</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="n">lasso_model</span><span class="o">.</span><span class="n">alpha_</span><span class="p">)</span>
+
+<span class="n">models</span> <span class="o">=</span> <span class="p">[</span><span class="n">linreg</span><span class="p">,</span> <span class="n">lasso</span><span class="p">]</span>
+<span class="n">model_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;LinearRegression&#39;</span><span class="p">,</span> <span class="s1">&#39;Lasso&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">model</span> <span class="ow">in</span> <span class="n">models</span><span class="p">:</span>
+    <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train2</span><span class="p">,</span> <span class="n">y_train2</span><span class="p">),</span>
+
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="p">[</span><span class="n">coef</span><span class="p">,</span> <span class="n">linreg</span><span class="o">.</span><span class="n">coef_</span><span class="p">,</span> <span class="n">lasso</span><span class="o">.</span><span class="n">coef_</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;feature_0&#39;</span><span class="p">,</span><span class="s1">&#39;feature_1&#39;</span><span class="p">,</span><span class="s1">&#39;feature_2&#39;</span><span class="p">,</span><span class="s1">&#39;feature_3&#39;</span><span class="p">,</span><span class="s1">&#39;feature_4&#39;</span><span class="p">,</span><span class="s1">&#39;feature_5&#39;</span><span class="p">,</span><span class="s1">&#39;feature_6&#39;</span><span class="p">,</span><span class="s1">&#39;feature_7&#39;</span><span class="p">,</span><span class="s1">&#39;feature_8&#39;</span><span class="p">,</span><span class="s1">&#39;feature_9&#39;</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;true_coef&#39;</span><span class="p">,</span><span class="s1">&#39;predicted_coef_linear_regression&#39;</span><span class="p">,</span> <span class="s1">&#39;predicted_coef_lasso_regression&#39;</span><span class="p">])</span>   
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>feature_0</th>
+      <th>feature_1</th>
+      <th>feature_2</th>
+      <th>feature_3</th>
+      <th>feature_4</th>
+      <th>feature_5</th>
+      <th>feature_6</th>
+      <th>feature_7</th>
+      <th>feature_8</th>
+      <th>feature_9</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>true_coef</th>
+      <td>0.000000</td>
+      <td>26.746067</td>
+      <td>3.285346</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>86.508110</td>
+      <td>0.000000</td>
+      <td>0.000000</td>
+      <td>93.322255</td>
+      <td>12.444828</td>
+    </tr>
+    <tr>
+      <th>predicted_coef_linear_regression</th>
+      <td>1.866844</td>
+      <td>25.702129</td>
+      <td>-3.679188</td>
+      <td>-6.112337</td>
+      <td>34.886585</td>
+      <td>92.493703</td>
+      <td>20.896593</td>
+      <td>18.801634</td>
+      <td>43.946286</td>
+      <td>0.984736</td>
+    </tr>
+    <tr>
+      <th>predicted_coef_lasso_regression</th>
+      <td>0.000000</td>
+      <td>10.206847</td>
+      <td>-0.000000</td>
+      <td>-0.000000</td>
+      <td>14.383805</td>
+      <td>72.855281</td>
+      <td>0.078641</td>
+      <td>0.000000</td>
+      <td>23.938246</td>
+      <td>0.000000</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>This example confirms that, as expected, by imposing a constraint on the model parameters, Lasso regression embedded method allow us to visualize which variables have non-zero regression coefficients and are consequently the most strongly associated with the response variable. Obtaining a subset of predictors will reduce complexity of our our model and prevent it from over-fitting which can result in a biased and inefficient model.</p>
+<h2>Conclusion:</h2>
+<p>Scikit_learn generators are quick and easy-to-handle methods to generate synthetic datasets that allow you to test and debug your algorithms. They can be really useful for better understanding the behavior of algorithms in response to changes in their parameters.
+Make_classification and make_regression are great tools to keep in your back pocket when you want to conduct experiments on classification, regression, or clustering algorithms. These generators let you generate case specific data and tune/control many dataset properties as varied as the number of features, the number of samples, if you would like to introduce some noise, some bias, change the degree of class separation, or the class weights if it is used for classification algorithms.</p>
+<p>We all know that finding a real dataset including specific combinations of criterias with known levels can be very difficult, so stop seraching and use scikit-learn's data generators!</p>
+            </section>
+
+            <section class="post-info">
+                <div class="post-share">
+                    <a class="twitter" href="https://twitter.com/share?text=sklearn make_classification and make_regression dataset generators&amp;url=https://Bolive84.github.io/Blog/Blog_2.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+                    </a>
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://Bolive84.github.io/Blog/Blog_2.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+                    </a>
+                    <a class="googleplus" href="https://plus.google.com/share?url=https://Bolive84.github.io/Blog/Blog_2.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
+                    </a>
+                    <div class="clear"></div>
+                </div>
+
+
+                <div class="clear"></div>
+
+
+                </section>
+
+
+                <aside class="post-nav">
+                    <div class="clear"></div>
+                </aside>
+
+            </div>
+        </article>
+    </main>
+      <!-- TODO : Body class -->
+    <div id="body-class" style="display: none;" class=""></div>
+
+    <footer id="footer">
+      <div class="inner">
+        <section class="credits">
+
+
+          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>
+          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>
+        </section>
+      </div>
+    </footer>
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://Bolive84.github.io/Blog/theme/js/script.js"></script>
+
+</body>
+</html>

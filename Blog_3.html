@@ -1,0 +1,1147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+  <title>Introduction To Word Embeddings - How To Train Your Own Word Vectors Using The Simpsons Dialogues?</title>
+
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta name="generator" content="Pelican" />
+<link href="https://Bolive84.github.io/Blog/Blog_3.html" rel="canonical" />
+  <!-- Feed -->
+        <link href="https://Bolive84.github.io/Blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Benoit's Blog Full Atom Feed" />
+          <link href="https://Bolive84.github.io/Blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Benoit's Blog Categories Atom Feed" />
+
+  <link href="https://Bolive84.github.io/Blog/theme/css/style.css" type="text/css" rel="stylesheet" />
+
+  <!-- Code highlight color scheme -->
+      <link href="https://Bolive84.github.io/Blog/theme/css/code_blocks/github.css" rel="stylesheet">
+
+
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+
+    <meta name="description" content="Introduction To Word Embeddings How To Train Your Own Word Vectors Using The Simpsons Dialogues? Why Word Vectors? As the volume of...">
+
+    <meta name="author" content="Benoit Olive">
+
+
+
+
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Benoit's Blog"/>
+<meta property="og:title" content="Introduction To Word Embeddings - How To Train Your Own Word Vectors Using The Simpsons Dialogues?"/>
+<meta property="og:description" content="Introduction To Word Embeddings How To Train Your Own Word Vectors Using The Simpsons Dialogues? Why Word Vectors? As the volume of..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://Bolive84.github.io/Blog/Blog_3.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2019-10-07 00:00:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://Bolive84.github.io/Blog/author/benoit-olive.html">
+<meta property="article:section" content="misc"/>
+<meta property="og:image" content="https://Bolive84.github.io/Blog/theme/images/post-bg.jpg">
+
+<!-- Twitter Card -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "name": "Introduction To Word Embeddings - How To Train Your Own Word Vectors Using The Simpsons Dialogues?",
+  "headline": "Introduction To Word Embeddings - How To Train Your Own Word Vectors Using The Simpsons Dialogues?",
+  "datePublished": "2019-10-07 00:00:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Benoit Olive",
+    "url": "https://Bolive84.github.io/Blog/author/benoit-olive.html"
+  },
+  "image": "https://Bolive84.github.io/Blog/theme/images/post-bg.jpg",
+  "url": "https://Bolive84.github.io/Blog/Blog_3.html",
+  "description": "Introduction To Word Embeddings How To Train Your Own Word Vectors Using The Simpsons Dialogues? Why Word Vectors? As the volume of..."
+}
+</script>
+</head>
+<!-- TODO : Body class -->
+<body class="home-template">
+
+<nav id="menu">
+  <a class="close-button">Close</a>
+  <div class="nav-wrapper">
+    <p class="nav-label">Menu</p>
+    <ul>
+
+
+    </ul>
+  </div>
+</nav>
+    <!-- Progressbar -->
+    <div class="progress-container">
+        <span class="progress-bar"></span>
+    </div>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="post-header" >
+      <div class="inner">
+        <nav id="navigation">
+            <span id="home-button" class="nav-button">
+                <a class="home-button" href="https://Bolive84.github.io/Blog/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+            </span>
+          <span id="menu-button" class="nav-button">
+            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+          </span>
+        </nav>
+        <h1 class="post-title">Introduction To Word Embeddings - How To Train Your Own Word Vectors Using The Simpsons Dialogues?</h1>
+        <!-- TODO : Proper class for headline -->
+        <span class="post-meta">
+                <a href="https://Bolive84.github.io/Blog/author/benoit-olive.html">Benoit Olive</a>
+            | <time datetime="Mon 07 October 2019">Mon 07 October 2019</time>
+        </span>
+        <!-- TODO : Modified check -->
+      </div>
+    </header>
+
+  <section id="wrapper">
+    <a class="hidden-close"></a>
+
+    <!-- Post content -->
+    <main class="content" role="main">
+        <article class="post">
+        <div class="inner">
+            <section class="post-content">
+                <p><font color='darkblue'><br>
+<h2> <center>Introduction To Word Embeddings</center>  <br>  <center> <i>How To Train Your Own Word Vectors Using The Simpsons Dialogues? </i> </center>
+</h2>
+</font></p>
+<p><font color='darkblue'> <h3> Why Word Vectors? </h3> </font></p>
+<p>As the volume of textual data generated on the web or uploaded in large servers around the world is growing in an exponential way, the need to analyze this type of data is becoming more and more crucial to understand trends, people behaviors, purchase intentions, and more generally the world we live in.</p>
+<p>In order to increase our ability to analyse relationships across words, sentences and documents, words can be transformed into vectors. In physics, vectors are arrows, in computer science and statistics, vectors are columns of values, like one numeric series in a dataframe. A word vector is literally a way for us to represent words as vectors, allowing us to use machine learning to better comprehend the structure and content of language by organizing concepts and learning the relationships among them.</p>
+<p>In this tutorial, I am going to describe the different steps to follow to train a <code>word2vec</code> model with your own text-based dataset. Word2vec was created and published by Tomas Mikolov and his research team at Google in 2013. This tool provides an efficient implementation of the continuous bag-of-words (CBOW) and skip-gram architectures for computing vector representations of words -also called word embeddings-, using a two-layer neural network. It takes in observations (sentences, tweets, books), first constructs a vocabulary from the training text data, and then learns vector representation of words. The resulting word vector file can be used as features in many natural language processing and machine learning applications.</p>
+<p>Here is a quick summary of the tutorial:</p>
+<ol>
+<li>Import data and libraries</li>
+<li>Pre-process text</li>
+<li>Transform text into vectors with <code>word2vec</code> and train the model</li>
+<li>Explore the model</li>
+<li>Conclusion</li>
+</ol>
+<p><font color='darkblue'> <h4> My text dataset:</h4></font></p>
+<p>I could find on Kaggle this dataset containing script lines for approximately 600 Simpsons episodes, dating back to 1989.
+The <code>.csv</code> file is about 9MB, and includes more than 150K lines of dialogues between the different characters of the series, data is organized in 2 columns, each row showing the character's name and the text actually spoken, A-MA-ZING!</p>
+<p>File can be found here: https://www.kaggle.com/pierremegret/dialogue-lines-of-the-simpsons</p>
+<p><img alt="png" src="images/Blog_3/Simpsons_magnifying.png"></p>
+<p><font color='darkblue'> <h3> 1. Import data and libraries </h3> </font></p>
+<div class="highlight"><pre><span></span><span class="c1"># Install/upgrade Gensim if needed:</span>
+<span class="c1"># !pip install gensim --upgrade</span>
+
+<span class="c1"># Import Gensim and data science standard libraries:</span>
+<span class="kn">import</span> <span class="nn">gensim</span> <span class="c1"># to get access to word2vec tool</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="kn">as</span> <span class="nn">pd</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+
+<span class="c1"># Import Simpsons dataset, and read it in a pandas dataframe:</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;simpsons_dataset.csv&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># let&#39;s explore quickly the data:</span>
+
+<span class="c1"># Data is showing as text strings, contains 2 columns and 158314 rows, and has some null values in each of the 2 columns:</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Dataframe information: &#39;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">()</span>
+<span class="n">df</span><span class="o">.</span><span class="n">info</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">Dataframe</span> <span class="n">information</span><span class="p">:</span>
+
+<span class="o">&lt;</span><span class="k">class</span> <span class="s1">&#39;pandas.core.frame.DataFrame&#39;</span><span class="o">&gt;</span>
+<span class="n">RangeIndex</span><span class="p">:</span> <span class="mi">158314</span> <span class="n">entries</span><span class="p">,</span> <span class="mi">0</span> <span class="k">to</span> <span class="mi">158313</span>
+<span class="k">Data</span> <span class="n">columns</span> <span class="p">(</span><span class="n">total</span> <span class="mi">2</span> <span class="n">columns</span><span class="p">):</span>
+<span class="n">raw_character_text</span>    <span class="mi">140500</span> <span class="n">non</span><span class="o">-</span><span class="k">null</span> <span class="k">object</span>
+<span class="n">spoken_words</span>          <span class="mi">131855</span> <span class="n">non</span><span class="o">-</span><span class="k">null</span> <span class="k">object</span>
+<span class="n">dtypes</span><span class="p">:</span> <span class="k">object</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="n">memory</span> <span class="k">usage</span><span class="p">:</span> <span class="mi">2</span><span class="p">.</span><span class="mi">4</span><span class="o">+</span> <span class="n">MB</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Data looks great!</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Dataframe top rows:&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">Dataframe</span> <span class="n">top</span> <span class="k">rows</span><span class="p">:</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>raw_character_text</th>
+      <th>spoken_words</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Miss Hoover</td>
+      <td>No, actually, it was a little of both. Sometim...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Lisa Simpson</td>
+      <td>Where's Mr. Bergstrom?</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Miss Hoover</td>
+      <td>I don't know. Although I'd sure like to talk t...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Lisa Simpson</td>
+      <td>That life is worth living.</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Edna Krabappel-Flanders</td>
+      <td>The polls will be open from now until the end ...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><span class="c1"># Here is the total of null values per columns:</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Number of null values in dataframe: &#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">Number</span> <span class="k">of</span> <span class="k">null</span> <span class="k">values</span> <span class="k">in</span> <span class="n">dataframe</span><span class="p">:</span>
+
+
+
+
+
+<span class="n">raw_character_text</span>    <span class="mi">17814</span>
+<span class="n">spoken_words</span>          <span class="mi">26459</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Dataset is large enough to run our demo, so let&#39;s get rid of all null values:</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Just making sure that our dataset is free of nulls now:</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Number of null values remaining: &#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">Number</span> <span class="k">of</span> <span class="k">null</span> <span class="k">values</span> <span class="n">remaining</span><span class="p">:</span>
+
+
+
+
+
+<span class="n">raw_character_text</span>    <span class="mi">0</span>
+<span class="n">spoken_words</span>          <span class="mi">0</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># After dropping the nulls, 131853 rows remain in the dataset:</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Dataframe shape:&#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">Dataframe</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">131853</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Let&#39;s rename the 2 columns:</span>
+<span class="n">df</span><span class="o">.</span><span class="n">rename</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;raw_character_text&#39;</span><span class="p">:</span> <span class="s1">&#39;character&#39;</span><span class="p">,</span> <span class="s1">&#39;spoken_words&#39;</span><span class="p">:</span> <span class="s1">&#39;sequence&#39;</span><span class="p">},</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+
+<p><font color='darkblue'> <h3> 2. Pre-process text </h3> </font></p>
+<p>Pre-preprocessing is needed for transferring text from human language to machine-readable format for further processing.</p>
+<div class="highlight"><pre><span></span><span class="c1"># Import text nltk pre-processing tools:</span>
+<span class="kn">from</span> <span class="nn">nltk.stem</span> <span class="kn">import</span> <span class="n">WordNetLemmatizer</span> <span class="c1"># to lemmatize words</span>
+<span class="kn">from</span> <span class="nn">nltk.tokenize</span> <span class="kn">import</span> <span class="n">RegexpTokenizer</span> <span class="c1"># to&#39;tokenize&#39; words</span>
+<span class="kn">from</span> <span class="nn">nltk.corpus</span> <span class="kn">import</span> <span class="n">stopwords</span> <span class="c1"># to remove stopwords.</span>
+<span class="kn">import</span> <span class="nn">re</span> <span class="c1"># to access to regular expression matching operations</span>
+
+<span class="k">def</span> <span class="nf">preprocess</span> <span class="p">(</span><span class="n">x</span><span class="p">):</span> <span class="c1"># create a pre-processing function:</span>
+    <span class="n">string_text</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># convert text to strings</span>
+    <span class="n">lower_case</span> <span class="o">=</span> <span class="n">string_text</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="c1"># lowercase text</span>
+    <span class="n">lower_case</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^a-zA-Z]&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">lower_case</span><span class="p">)</span> <span class="c1"># remove non-alphabetic characters</span>
+    <span class="n">retokenizer</span> <span class="o">=</span> <span class="n">RegexpTokenizer</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\w+&#39;</span><span class="p">)</span>
+    <span class="n">words</span> <span class="o">=</span> <span class="n">retokenizer</span><span class="o">.</span><span class="n">tokenize</span><span class="p">(</span><span class="n">lower_case</span><span class="p">)</span> <span class="c1"># split strings into substrings using a regular expression</span>
+    <span class="n">lemmer</span> <span class="o">=</span> <span class="n">WordNetLemmatizer</span><span class="p">()</span> <span class="c1"># take words and attempt to return their base/dictionary form.</span>
+    <span class="n">stops</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">stopwords</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="s1">&#39;english&#39;</span><span class="p">))</span> <span class="c1"># remove english stopwords, some example of stopwords are as &#39;what&#39;, &#39;as&#39;, &#39;of&#39;, &#39;into&#39;</span>
+    <span class="n">meaningful_words</span> <span class="o">=</span> <span class="p">[</span><span class="n">w</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">stops</span><span class="p">]</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">meaningful_words</span><span class="p">)</span> <span class="o">&gt;</span><span class="mi">2</span><span class="p">:</span> <span class="c1"># Let&#39;s remove sentences that are less than two words long as Word2Vec uses context words to learn the vector representation of a target word</span>
+        <span class="k">return</span> <span class="s2">&quot; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">([</span><span class="n">lemmer</span><span class="o">.</span><span class="n">lemmatize</span><span class="p">(</span><span class="n">word</span><span class="p">)</span> <span class="k">for</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">meaningful_words</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">word</span> <span class="ow">in</span> <span class="n">stops</span><span class="p">])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Apply our function to the Simpsons dialogues:</span>
+<span class="n">df</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">preprocess</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Pre-processing is now done, but sentences that were 1 or 2 words long have been removed from our dataset, see &#39;sequence&#39; at row [1]:</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Pre-processed dataframe top rows:&#39;</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">Pre</span><span class="o">-</span><span class="n">processed</span> <span class="n">dataframe</span> <span class="n">top</span> <span class="k">rows</span><span class="p">:</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>character</th>
+      <th>sequence</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Miss Hoover</td>
+      <td>actually little sometimes disease magazine new...</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>Lisa Simpson</td>
+      <td>None</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>Miss Hoover</td>
+      <td>know although sure like talk touch lesson plan...</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>Lisa Simpson</td>
+      <td>life worth living</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Edna Krabappel-Flanders</td>
+      <td>poll open end recess case decided put thought ...</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><span class="c1"># 38061 new nulls appear throughout our preprocessed dataset:</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Number of null values in pre-processed dataframe: &#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">())</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">Number</span> <span class="k">of</span> <span class="k">null</span> <span class="k">values</span> <span class="k">in</span> <span class="n">pre</span><span class="o">-</span><span class="n">processed</span> <span class="n">dataframe</span><span class="p">:</span>  <span class="mi">38061</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># ..so let&#39;s remove them as well as all duplicates:</span>
+<span class="n">df_clean</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">drop_duplicates</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Our &#39;clean&#39; dataset includes now 93317 rows of pre-processed text:</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Shape of the clean version of our dataframe: &#39;</span><span class="p">,</span> <span class="n">df_clean</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">Shape</span> <span class="k">of</span> <span class="n">the</span> <span class="n">clean</span> <span class="n">version</span> <span class="k">of</span> <span class="k">our</span> <span class="n">dataframe:</span>  (<span class="mi">93317</span>, <span class="mi">2</span>)
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Let&#39;s use Gensim Phrases package to automatically detect bigrams (common phrases) from a list of sentences.</span>
+<span class="c1"># This will connect &quot;bart&quot; and &quot;simpson&quot; when they appear side by side, so the model will treat &#39;homer_simpson&#39; as one word</span>
+<span class="kn">from</span> <span class="nn">gensim.models.phrases</span> <span class="kn">import</span> <span class="n">Phrases</span><span class="p">,</span> <span class="n">Phraser</span> <span class="c1"># Phrases() takes a list of list of words as input:</span>
+
+<span class="n">sent</span> <span class="o">=</span> <span class="p">[</span><span class="n">row</span><span class="o">.</span><span class="n">split</span><span class="p">()</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df_clean</span><span class="p">[</span><span class="s1">&#39;sequence&#39;</span><span class="p">]]</span>
+<span class="n">phrases</span> <span class="o">=</span> <span class="n">Phrases</span><span class="p">(</span><span class="n">sent</span><span class="p">,</span> <span class="n">min_count</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span> <span class="c1"># we will ignore all bigrams with total collected count lower than 20.</span>
+<span class="n">bigram</span> <span class="o">=</span> <span class="n">Phraser</span><span class="p">(</span><span class="n">phrases</span><span class="p">)</span>
+<span class="n">sentences</span> <span class="o">=</span> <span class="n">bigram</span><span class="p">[</span><span class="n">sent</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;First 15 bigrams in alpha order:&#39;</span> <span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">bigram</span><span class="o">.</span><span class="n">phrasegrams</span><span class="p">)[:</span><span class="mi">15</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;first_word&#39;</span><span class="p">,</span> <span class="s1">&#39;second_word&#39;</span><span class="p">])</span>
+
+<span class="c1"># We can see at row 12 that when &#39;bart&#39; and &#39;simpson&#39; show up side by side in a sentence,</span>
+<span class="c1"># they will be now considered as one word, the bigram &#39;bart_simpson&#39;</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="k">First</span> <span class="mi">15</span> <span class="n">bigrams</span> <span class="k">in</span> <span class="n">alpha</span> <span class="k">order</span><span class="p">:</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>first_word</th>
+      <th>second_word</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>b'across'</td>
+      <td>b'street'</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>b'always'</td>
+      <td>b'wanted'</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>b'amusement'</td>
+      <td>b'park'</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>b'angry'</td>
+      <td>b'dad'</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>b'answer'</td>
+      <td>b'question'</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>b'anyone'</td>
+      <td>b'else'</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>b'ask'</td>
+      <td>b'question'</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>b'aunt'</td>
+      <td>b'selma'</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>b'aw'</td>
+      <td>b'geez'</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>b'b'</td>
+      <td>b'c'</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>b'ba'</td>
+      <td>b'ba'</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>b'bad'</td>
+      <td>b'news'</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>b'bart'</td>
+      <td>b'simpson'</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>b'best'</td>
+      <td>b'friend'</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>b'big'</td>
+      <td>b'deal'</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">defaultdict</span> <span class="c1"># defaultdict will allow us to count the number of occurrences for each word.</span>
+
+<span class="n">word_count</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">sent</span> <span class="ow">in</span> <span class="n">sentences</span><span class="p">:</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">sent</span><span class="p">:</span>
+        <span class="n">word_count</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Number of words in our dataframe: &quot;</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">word_count</span><span class="p">))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nb">Number</span> <span class="k">of</span> <span class="n">words</span> <span class="k">in</span> <span class="n">our</span> <span class="n">dataframe</span><span class="p">:</span>  <span class="mi">32943</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># What are the most frequent words appearing in our data?</span>
+<span class="k">print</span><span class="p">(</span><span class="s1">&#39;Most frequent words:&#39;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">word_count</span><span class="o">.</span><span class="n">items</span><span class="p">(),</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">)[:</span><span class="mi">15</span><span class="p">],</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;word&#39;</span><span class="p">,</span> <span class="s1">&#39;frequency&#39;</span><span class="p">])</span>
+
+<span class="c1"># Homer and Bart are respectively the 10th and 12th most frequently used word in the show,</span>
+<span class="c1"># which makes sense as they are the 2 main characters of the series</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">Most</span> <span class="n">frequent</span> <span class="n">words</span><span class="p">:</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>word</th>
+      <th>frequency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>oh</td>
+      <td>6726</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>well</td>
+      <td>5425</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>like</td>
+      <td>4941</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>get</td>
+      <td>4924</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>one</td>
+      <td>4756</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>know</td>
+      <td>4593</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>hey</td>
+      <td>3754</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>right</td>
+      <td>3535</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>got</td>
+      <td>3420</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>homer</td>
+      <td>3040</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>go</td>
+      <td>2999</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>want</td>
+      <td>2888</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>bart</td>
+      <td>2802</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>think</td>
+      <td>2687</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>time</td>
+      <td>2577</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p><font color='darkblue'> <h3> 3. Transform text into vectors with <code>word2vec</code> and train the model </h3> </font></p>
+<p>After training, <code>word2vec</code> can be used to map each word to a vector of typically several hundred elements, which represent that word’s relation to other words. This vector is the neural network’s hidden layer.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">gensim.models</span> <span class="kn">import</span> <span class="n">Word2Vec</span> <span class="c1"># import word2vec from Gensim library</span>
+
+<span class="n">w2v_model</span> <span class="o">=</span> <span class="n">Word2Vec</span><span class="p">(</span>
+                     <span class="n">size</span><span class="o">=</span><span class="mi">300</span><span class="p">,</span> <span class="c1"># number of dimensions of our word vectors</span>
+                     <span class="n">window</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="c1"># set the number of &quot;context words&quot; at 10</span>
+                     <span class="n">min_count</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="c1"># ignore all words with total frequency lower than 20</span>
+                     <span class="n">sample</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">,</span> <span class="c1"># set the threshold for configuring which higher-frequency words are randomly downsampled</span>
+                     <span class="n">negative</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="c1"># set the number of noise words to be drawn at 20</span>
+                     <span class="n">workers</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span> <span class="c1"># number of threads used in parallel to train the machine</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># This step will build the vocabulary table:</span>
+<span class="n">w2v_model</span><span class="o">.</span><span class="n">build_vocab</span><span class="p">(</span><span class="n">sentences</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># Model can now be trained:</span>
+<span class="n">w2v_model</span><span class="o">.</span><span class="n">train</span><span class="p">(</span>
+    <span class="n">sentences</span><span class="p">,</span>  
+    <span class="n">total_examples</span><span class="o">=</span><span class="n">w2v_model</span><span class="o">.</span><span class="n">corpus_count</span><span class="p">,</span> <span class="c1"># number of sentences in the corpus</span>
+    <span class="n">epochs</span><span class="o">=</span><span class="mi">30</span> <span class="c1"># number of iterations in the corpus</span>
+<span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">8742042</span><span class="p">,</span> <span class="mi">18370410</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="c1"># init_sims will precompute L2-normalized vectors and ,if true, will forget the original vectors and only keep the normalized ones, this can save lots of memory</span>
+<span class="n">w2v_model</span><span class="o">.</span><span class="n">init_sims</span><span class="p">(</span><span class="n">replace</span><span class="o">=</span><span class="bp">False</span><span class="p">)</span>
+</pre></div>
+
+
+<p><font color='darkblue'> <h3> 4. Explore the model </h3> </font></p>
+<p>Let's see what our model finds when we ask it to pull the top-10 most similar words to the main characters of the show with <code>most_similar</code> method:</p>
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Top 10 most similar words to Homer:&#39;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">w2v_model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;homer&quot;</span><span class="p">]),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;word&#39;</span><span class="p">,</span> <span class="s1">&#39;frequency&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">Top</span> <span class="mi">10</span> <span class="n">most</span> <span class="k">similar</span> <span class="n">words</span> <span class="k">to</span> <span class="n">Homer</span><span class="p">:</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>word</th>
+      <th>frequency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>marge</td>
+      <td>0.647157</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>becky</td>
+      <td>0.551345</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>lenny_carl</td>
+      <td>0.499023</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>creepy</td>
+      <td>0.498600</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>homie</td>
+      <td>0.497142</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>husband</td>
+      <td>0.485995</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>soul_mate</td>
+      <td>0.483098</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>crummy</td>
+      <td>0.481756</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>leave_alone</td>
+      <td>0.469040</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>sometime</td>
+      <td>0.468563</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Top 10 most similar words to Bart:&#39;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">w2v_model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;bart&quot;</span><span class="p">]),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;word&#39;</span><span class="p">,</span> <span class="s1">&#39;frequency&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">Top</span> <span class="mi">10</span> <span class="n">most</span> <span class="k">similar</span> <span class="n">words</span> <span class="k">to</span> <span class="n">Bart</span><span class="p">:</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>word</th>
+      <th>frequency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>lisa</td>
+      <td>0.745548</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>maggie</td>
+      <td>0.613382</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>learned_lesson</td>
+      <td>0.602921</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>mom_dad</td>
+      <td>0.602509</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>pay_attention</td>
+      <td>0.596564</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>mom</td>
+      <td>0.589715</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>homework</td>
+      <td>0.586715</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>tell_truth</td>
+      <td>0.582463</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>feel_better</td>
+      <td>0.581206</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>dr_hibbert</td>
+      <td>0.581166</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Top 10 most similar words to Lisa:&#39;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">w2v_model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;lisa&quot;</span><span class="p">]),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;word&#39;</span><span class="p">,</span> <span class="s1">&#39;frequency&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">Top</span> <span class="mi">10</span> <span class="n">most</span> <span class="k">similar</span> <span class="n">words</span> <span class="k">to</span> <span class="n">Lisa</span><span class="p">:</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>word</th>
+      <th>frequency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>bart</td>
+      <td>0.745548</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>learned_lesson</td>
+      <td>0.603608</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>homework</td>
+      <td>0.603168</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>maggie</td>
+      <td>0.574106</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>mom</td>
+      <td>0.568127</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>grownup</td>
+      <td>0.563802</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>saxophone</td>
+      <td>0.561525</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>surprised</td>
+      <td>0.559258</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>daughter</td>
+      <td>0.558765</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>math</td>
+      <td>0.550277</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Top 10 most similar words to Marge:&#39;</span><span class="p">)</span>
+<span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">w2v_model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;marge&quot;</span><span class="p">]),</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;word&#39;</span><span class="p">,</span> <span class="s1">&#39;frequency&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">Top</span> <span class="mi">10</span> <span class="n">most</span> <span class="k">similar</span> <span class="n">words</span> <span class="k">to</span> <span class="n">Marge</span><span class="p">:</span>
+</pre></div>
+
+
+<div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>word</th>
+      <th>frequency</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>homer</td>
+      <td>0.647157</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>husband</td>
+      <td>0.601620</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>homie</td>
+      <td>0.543166</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>becky</td>
+      <td>0.541192</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>marriage</td>
+      <td>0.536475</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>ashamed</td>
+      <td>0.531238</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>tell_truth</td>
+      <td>0.512526</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>disappointed</td>
+      <td>0.511782</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>fault</td>
+      <td>0.506138</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>brunch</td>
+      <td>0.499643</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<p>It looks like all this information makes sense! We can use <code>doesnt_match</code> method to find which word from the given list doesn’t go with the others:</p>
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Word to exclude from the list:&#39;</span><span class="p">,</span> <span class="n">w2v_model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">doesnt_match</span><span class="p">([</span><span class="s1">&#39;bart&#39;</span><span class="p">,</span> <span class="s1">&#39;lisa&#39;</span><span class="p">,</span> <span class="s1">&#39;maggie&#39;</span><span class="p">,</span> <span class="s1">&#39;milhouse&#39;</span><span class="p">]))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="nv">Word</span> <span class="nv">to</span> <span class="nv">exclude</span> <span class="nv">from</span> <span class="nv">the</span> <span class="nv">list</span>: <span class="nv">milhouse</span>
+
+
+<span class="nv">C</span>:\<span class="nv">Users</span>\<span class="nv">Administrator</span>\<span class="nv">Anaconda3</span>\<span class="nv">lib</span>\<span class="nv">site</span><span class="o">-</span><span class="nv">packages</span>\<span class="nv">gensim</span>\<span class="nv">models</span>\<span class="nv">keyedvectors</span>.<span class="nv">py</span>:<span class="mi">877</span>: <span class="nv">FutureWarning</span>: <span class="nv">arrays</span> <span class="nv">to</span> <span class="nv">stack</span> <span class="nv">must</span> <span class="nv">be</span> <span class="nv">passed</span> <span class="nv">as</span> <span class="nv">a</span> <span class="s2">&quot;</span><span class="s">sequence</span><span class="s2">&quot;</span> <span class="nv">type</span> <span class="nv">such</span> <span class="nv">as</span> <span class="nv">list</span> <span class="nv">or</span> <span class="nv">tuple</span>. <span class="nv">Support</span> <span class="k">for</span> <span class="nv">non</span><span class="o">-</span><span class="nv">sequence</span> <span class="nv">iterables</span> <span class="nv">such</span> <span class="nv">as</span> <span class="nv">generators</span> <span class="nv">is</span> <span class="nv">deprecated</span> <span class="nv">as</span> <span class="nv">of</span> <span class="nv">NumPy</span> <span class="mi">1</span>.<span class="mi">16</span> <span class="nv">and</span> <span class="nv">will</span> <span class="nv">raise</span> <span class="nv">an</span> <span class="nv">error</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">future</span>.
+  <span class="nv">vectors</span> <span class="o">=</span> <span class="nv">vstack</span><span class="ss">(</span><span class="nv">self</span>.<span class="nv">word_vec</span><span class="ss">(</span><span class="nv">word</span>, <span class="nv">use_norm</span><span class="o">=</span><span class="nv">True</span><span class="ss">)</span> <span class="k">for</span> <span class="nv">word</span> <span class="nv">in</span> <span class="nv">used_words</span><span class="ss">)</span>.<span class="nv">astype</span><span class="ss">(</span><span class="nv">REAL</span><span class="ss">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="s1">&#39;Word to exclude from the list:&#39;</span><span class="p">,</span> <span class="n">w2v_model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">doesnt_match</span><span class="p">([</span><span class="s1">&#39;moe&#39;</span><span class="p">,</span> <span class="s1">&#39;lenny&#39;</span><span class="p">,</span> <span class="s1">&#39;carl&#39;</span><span class="p">,</span> <span class="s1">&#39;homer&#39;</span><span class="p">,</span> <span class="s1">&#39;marge&#39;</span><span class="p">]))</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">Word</span> <span class="k">to</span> <span class="n">exclude</span> <span class="k">from</span> <span class="n">the</span> <span class="n">list</span><span class="p">:</span> <span class="n">marge</span>
+</pre></div>
+
+
+<p>In physics, we can add/subtract vectors to understand how two forces might act on an object. Let's see if we can use <code>most_similar</code> method to do the same thing with word vectors.</p>
+<p>What happens when adding 'woman' to 'homer' and substract 'man?</p>
+<div class="highlight"><pre><span></span><span class="n">w2v_model</span><span class="o">.</span><span class="n">wv</span><span class="o">.</span><span class="n">most_similar</span><span class="p">(</span><span class="n">positive</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;woman&quot;</span><span class="p">,</span> <span class="s2">&quot;homer&quot;</span><span class="p">],</span> <span class="n">negative</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;man&quot;</span><span class="p">],</span> <span class="n">topn</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;marge&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5261433124542236</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;husband&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4614260196685791</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;homie&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">449959933757782</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;brunch&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4463199973106384</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;wife&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">44602805376052856</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;marriage&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">44539350271224976</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;grownup&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">44457897543907166</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;wasted&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4415558874607086</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;affair&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4279390275478363</span><span class="p">),</span>
+ <span class="p">(</span><span class="s1">&#39;luann&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4259093403816223</span><span class="p">)]</span>
+</pre></div>
+
+
+<p>This is correct, Marge is Homer female counterpart!</p>
+<p><font color='darkblue'> <h3> 5. Conclusion </h3> </font></p>
+<p>In this quick introduction to word embeddings I tried to describe as simply as possible the different steps you will need to go through if you want to train a word vectorizer with your own data. In this example, I chose to use Google's <code>word2vec</code> method, but other vectorizers can be available on sklearn's library as <code>CountVectorizer</code> , <code>HashingVectorizer</code> or <code>TfidfVectorizer</code>. Word embedding provides to machines much more information about words than has previously been possible using traditional representations of words. Word vectors are essential for solving NLP problems such as speech recognition, sentiment analysis, named entity recognition, spam filtering, and machine translation, they are an amazingly powerful concept and applications in this field are practically infinite. The importance of word embeddings in deep learning becomes more and more evident by looking at the number of researches in the field, so I hope that this tutorial was useful for you and helped you to better understand the mechanisms of these methods.</p>
+<p><img alt="jpg" src="images/Blog_3/simpsons460.jpg"></p>
+            </section>
+
+            <section class="post-info">
+                <div class="post-share">
+                    <a class="twitter" href="https://twitter.com/share?text=Introduction To Word Embeddings - How To Train Your Own Word Vectors Using The Simpsons Dialogues?&amp;url=https://Bolive84.github.io/Blog/Blog_3.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+                    </a>
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://Bolive84.github.io/Blog/Blog_3.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+                    </a>
+                    <a class="googleplus" href="https://plus.google.com/share?url=https://Bolive84.github.io/Blog/Blog_3.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
+                    </a>
+                    <div class="clear"></div>
+                </div>
+
+
+                <div class="clear"></div>
+
+
+                </section>
+
+
+                <aside class="post-nav">
+                    <div class="clear"></div>
+                </aside>
+
+            </div>
+        </article>
+    </main>
+      <!-- TODO : Body class -->
+    <div id="body-class" style="display: none;" class=""></div>
+
+    <footer id="footer">
+      <div class="inner">
+        <section class="credits">
+
+
+          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>
+          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>
+        </section>
+      </div>
+    </footer>
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://Bolive84.github.io/Blog/theme/js/script.js"></script>
+
+</body>
+</html>
