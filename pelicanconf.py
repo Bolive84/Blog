@@ -13,7 +13,7 @@ TIMEZONE = 'America/Toronto'
 DEFAULT_LANG = 'en'
 DEFAULT_PAGINATION = 10
 THEME = 'theme'
-OG_IMAGE = 'https://cdn.pixabay.com/photo/2018/07/03/07/09/block-chain-3513216_960_720.jpg'
+cover = 'https://cdn.pixabay.com/photo/2018/07/03/07/09/block-chain-3513216_960_720.jpg'
 # set to False for Production, True for Development
 if os.environ.get('PELICAN_ENV') == 'DEV':
     RELATIVE_URLS = True
