@@ -1,20 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
- <title>sklearn RANSACRegressor Method</title>
- <!-- Latest compiled and minified CSS -->
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
- <div class="container">
-  <h1><a href="https://Bolive84.github.io/Blog">Benoit's Blog</a></h1>
- </div>
+          <title>Benoit's Blog - sklearn RANSACRegressor Method</title>
+        <meta charset="utf-8" />
+        <link href="https://Bolive84.github.io/Blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Benoit's Blog Full Atom Feed" />
+        <link href="https://Bolive84.github.io/Blog/feeds/misc.atom.xml" type="application/atom+xml" rel="alternate" title="Benoit's Blog Categories Atom Feed" />
+
+
+
+
+
 </head>
-<body>
- <div class="container">
-<div class="row">
- <div class="col-md-8">
-  <h3>sklearn RANSACRegressor Method</h3>
-  <label>2019-09-15</label>
-  <h1>RANdom SAmple Consensus (RANSAC) Method:</h1>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="https://Bolive84.github.io/Blog/">Benoit's Blog <strong></strong></a></h1>
+        </header><!-- /#banner -->
+        <nav id="menu"><ul>
+            <li class="active"><a href="https://Bolive84.github.io/Blog/category/misc.html">misc</a></li>
+        </ul></nav><!-- /#menu -->
+<section id="content" class="body">
+  <header>
+    <h2 class="entry-title">
+      <a href="https://Bolive84.github.io/Blog/Blog_1.html" rel="bookmark"
+         title="Permalink to sklearn RANSACRegressor Method">sklearn RANSACRegressor Method</a></h2>
+ 
+  </header>
+  <footer class="post-info">
+    <time class="published" datetime="2019-09-15T00:00:00-04:00">
+      Sun 15 September 2019
+    </time>
+    <address class="vcard author">
+      By           <a class="url fn" href="https://Bolive84.github.io/Blog/author/benoit-olive.html">Benoit Olive</a>
+    </address>
+    <div class="category">
+        Category: <a href="https://Bolive84.github.io/Blog/category/misc.html">misc</a>
+    </div>
+  </footer><!-- /.post-info -->
+  <div class="entry-content">
+    <h1>RANdom SAmple Consensus (RANSAC) Method:</h1>
 <p><br></p>
 <p><strong>First, a little bit of history:</strong></p>
 <p>The RANSAC algorithm was first published by Fischler and Bolles at SRI (Stanford Research Institute) International in 1981. They used RANSAC to solve the Location Determination Problem (LDP), where the goal is to determine the points in the space that project onto an image into a set of landmarks with known locations.</p>
@@ -325,8 +349,13 @@ RANSAC algorythm takes the complete input, separates inliers from outliers and b
 <p>Linear regression models can be heavily impacted by the presence of outliers, which can come for instance from extreme values of the noise, or erroneous measurements. RANdom SAmple Consensus (RANSAC) algorithm can be used to remove sets of points from your model that do not follow the dominant pattern of the data, and as a robust machine learning algorithm, RANSAC will improve the performance of your model by estimating the parameters with a high degree of accuracy, even when a significant number of outliers are present in the data set.</p>
 <p><strong>Cons:</strong></p>
 <p>RANSAC usually performs poorly when the number of inliers in the dataset is less than 50%. Also, when the noise threshold is too small, the estimated parameters tend to be unstable. Finally, this algorithm removes data from the model, and in general losing data when developing models is something we want to avoid.</p>
- </div>
-</div>
- </div>
+  </div><!-- /.entry-content -->
+</section>
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>,
+                which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+        </footer><!-- /#contentinfo -->
 </body>
 </html>
