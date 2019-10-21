@@ -5,6 +5,7 @@ import os
 
 AUTHOR = 'Benoit Olive'
 SITENAME = 'Benoit\'s Blog'
+HOME_COVER = 'https://cdn.pixabay.com/photo/2017/04/23/19/30/earth-2254769_960_720.jpg'
 SITEURL = 'https://Bolive84.github.io/Blog'
 PATH = 'content'
 STATIC_PATHS = ['images']
