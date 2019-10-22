@@ -17,7 +17,7 @@
 <link href="https://Bolive84.github.io/Blog/Blog_3.html" rel="canonical" />
   <!-- Feed -->
         <link href="https://Bolive84.github.io/Blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Benoit's Blog Full Atom Feed" />
-          <link href="https://Bolive84.github.io/Blog/feeds/{slug}.atom.xml" type="application/atom+xml" rel="alternate" title="Benoit's Blog Categories Atom Feed" />
+          <link href="https://Bolive84.github.io/Blog/feeds/{'slug': u'misc'}.atom.xml" type="application/atom+xml" rel="alternate" title="Benoit's Blog Categories Atom Feed" />
 
   <link href="https://Bolive84.github.io/Blog/theme/css/style.css" type="text/css" rel="stylesheet" />
 
@@ -57,7 +57,7 @@
 <meta property="article:modified_time" content=""/>
 <meta property="article:author" content="https://Bolive84.github.io/Blog/author/benoit-olive.html">
 <meta property="article:section" content="misc"/>
-<meta property="og:image" content="https://Bolive84.github.io/Blog/theme/images/post-bg.jpg">
+<meta property="og:image" content="https://cdn.pixabay.com/photo/2018/07/03/07/09/block-chain-3513216_960_720.jpg">
 
 <!-- Twitter Card -->
 
@@ -74,7 +74,7 @@
     "name": "Benoit Olive",
     "url": "https://Bolive84.github.io/Blog/author/benoit-olive.html"
   },
-  "image": "https://Bolive84.github.io/Blog/theme/images/post-bg.jpg",
+  "image": "https://cdn.pixabay.com/photo/2018/07/03/07/09/block-chain-3513216_960_720.jpg",
   "url": "https://Bolive84.github.io/Blog/Blog_3.html",
   "description": "Introduction To Word Embeddings How To Train Your Own Word Vectors Using The Simpsons Dialogues? Why Word Vectors? As the volume of..."
 }
@@ -100,7 +100,7 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header id="post-header" >
+    <header id="post-header" class="has-cover">
       <div class="inner">
         <nav id="navigation">
             <span id="home-button" class="nav-button">
@@ -117,6 +117,7 @@
             | <time datetime="Mon 07 October 2019">Mon 07 October 2019</time>
         </span>
         <!-- TODO : Modified check -->
+            <div class="post-cover cover" style="background-image: url('https://cdn.pixabay.com/photo/2018/07/03/07/09/block-chain-3513216_960_720.jpg')">
       </div>
     </header>
 
@@ -174,15 +175,15 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="n">Dataframe</span> <span class="n">information</span><span class="p">:</span>
+<div class="highlight"><pre><span></span>Dataframe information:
 
-<span class="o">&lt;</span><span class="k">class</span> <span class="s1">&#39;pandas.core.frame.DataFrame&#39;</span><span class="o">&gt;</span>
-<span class="n">RangeIndex</span><span class="p">:</span> <span class="mi">158314</span> <span class="n">entries</span><span class="p">,</span> <span class="mi">0</span> <span class="k">to</span> <span class="mi">158313</span>
-<span class="k">Data</span> <span class="n">columns</span> <span class="p">(</span><span class="n">total</span> <span class="mi">2</span> <span class="n">columns</span><span class="p">):</span>
-<span class="n">raw_character_text</span>    <span class="mi">140500</span> <span class="n">non</span><span class="o">-</span><span class="k">null</span> <span class="k">object</span>
-<span class="n">spoken_words</span>          <span class="mi">131855</span> <span class="n">non</span><span class="o">-</span><span class="k">null</span> <span class="k">object</span>
-<span class="n">dtypes</span><span class="p">:</span> <span class="k">object</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="n">memory</span> <span class="k">usage</span><span class="p">:</span> <span class="mi">2</span><span class="p">.</span><span class="mi">4</span><span class="o">+</span> <span class="n">MB</span>
+&lt;class &#39;pandas.core.frame.DataFrame&#39;&gt;
+RangeIndex: 158314 entries, 0 to 158313
+Data columns (total 2 columns):
+raw_character_text    140500 non-null object
+spoken_words          131855 non-null object
+dtypes: object(2)
+memory usage: 2.4+ MB
 </pre></div>
 
 
@@ -192,7 +193,7 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="n">Dataframe</span> <span class="n">top</span> <span class="k">rows</span><span class="p">:</span>
+<div class="highlight"><pre><span></span>Dataframe top rows:
 </pre></div>
 
 
@@ -254,15 +255,15 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="nb">Number</span> <span class="k">of</span> <span class="k">null</span> <span class="k">values</span> <span class="k">in</span> <span class="n">dataframe</span><span class="p">:</span>
+<div class="highlight"><pre><span></span>Number of null values in dataframe:
 
 
 
 
 
-<span class="n">raw_character_text</span>    <span class="mi">17814</span>
-<span class="n">spoken_words</span>          <span class="mi">26459</span>
-<span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+raw_character_text    17814
+spoken_words          26459
+dtype: int64
 </pre></div>
 
 
@@ -277,15 +278,15 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="nb">Number</span> <span class="k">of</span> <span class="k">null</span> <span class="k">values</span> <span class="n">remaining</span><span class="p">:</span>
+<div class="highlight"><pre><span></span>Number of null values remaining:
 
 
 
 
 
-<span class="n">raw_character_text</span>    <span class="mi">0</span>
-<span class="n">spoken_words</span>          <span class="mi">0</span>
-<span class="n">dtype</span><span class="p">:</span> <span class="n">int64</span>
+raw_character_text    0
+spoken_words          0
+dtype: int64
 </pre></div>
 
 
@@ -294,7 +295,7 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="n">Dataframe</span> <span class="n">shape</span><span class="p">:</span> <span class="p">(</span><span class="mi">131853</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>Dataframe shape: (131853, 2)
 </pre></div>
 
 
@@ -336,7 +337,7 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="n">Pre</span><span class="o">-</span><span class="n">processed</span> <span class="n">dataframe</span> <span class="n">top</span> <span class="k">rows</span><span class="p">:</span>
+<div class="highlight"><pre><span></span>Pre-processed dataframe top rows:
 </pre></div>
 
 
@@ -397,7 +398,7 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="nb">Number</span> <span class="k">of</span> <span class="k">null</span> <span class="k">values</span> <span class="k">in</span> <span class="n">pre</span><span class="o">-</span><span class="n">processed</span> <span class="n">dataframe</span><span class="p">:</span>  <span class="mi">38061</span>
+<div class="highlight"><pre><span></span>Number of null values in pre-processed dataframe:  38061
 </pre></div>
 
 
@@ -432,7 +433,7 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="k">First</span> <span class="mi">15</span> <span class="n">bigrams</span> <span class="k">in</span> <span class="n">alpha</span> <span class="k">order</span><span class="p">:</span>
+<div class="highlight"><pre><span></span>First 15 bigrams in alpha order:
 </pre></div>
 
 
@@ -549,7 +550,7 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="nb">Number</span> <span class="k">of</span> <span class="n">words</span> <span class="k">in</span> <span class="n">our</span> <span class="n">dataframe</span><span class="p">:</span>  <span class="mi">32943</span>
+<div class="highlight"><pre><span></span>Number of words in our dataframe:  32943
 </pre></div>
 
 
@@ -562,7 +563,7 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="n">Most</span> <span class="n">frequent</span> <span class="n">words</span><span class="p">:</span>
+<div class="highlight"><pre><span></span>Most frequent words:
 </pre></div>
 
 
@@ -696,7 +697,7 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">8742042</span><span class="p">,</span> <span class="mi">18370410</span><span class="p">)</span>
+<div class="highlight"><pre><span></span>(8742042, 18370410)
 </pre></div>
 
 
@@ -712,7 +713,7 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="n">Top</span> <span class="mi">10</span> <span class="n">most</span> <span class="k">similar</span> <span class="n">words</span> <span class="k">to</span> <span class="n">Homer</span><span class="p">:</span>
+<div class="highlight"><pre><span></span>Top 10 most similar words to Homer:
 </pre></div>
 
 
@@ -798,7 +799,7 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="n">Top</span> <span class="mi">10</span> <span class="n">most</span> <span class="k">similar</span> <span class="n">words</span> <span class="k">to</span> <span class="n">Bart</span><span class="p">:</span>
+<div class="highlight"><pre><span></span>Top 10 most similar words to Bart:
 </pre></div>
 
 
@@ -884,7 +885,7 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="n">Top</span> <span class="mi">10</span> <span class="n">most</span> <span class="k">similar</span> <span class="n">words</span> <span class="k">to</span> <span class="n">Lisa</span><span class="p">:</span>
+<div class="highlight"><pre><span></span>Top 10 most similar words to Lisa:
 </pre></div>
 
 
@@ -970,7 +971,7 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="n">Top</span> <span class="mi">10</span> <span class="n">most</span> <span class="k">similar</span> <span class="n">words</span> <span class="k">to</span> <span class="n">Marge</span><span class="p">:</span>
+<div class="highlight"><pre><span></span>Top 10 most similar words to Marge:
 </pre></div>
 
 
@@ -1056,11 +1057,11 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="nv">Word</span> <span class="nv">to</span> <span class="nv">exclude</span> <span class="nv">from</span> <span class="nv">the</span> <span class="nv">list</span>: <span class="nv">milhouse</span>
+<div class="highlight"><pre><span></span>Word to exclude from the list: milhouse
 
 
-<span class="nv">C</span>:\<span class="nv">Users</span>\<span class="nv">Administrator</span>\<span class="nv">Anaconda3</span>\<span class="nv">lib</span>\<span class="nv">site</span><span class="o">-</span><span class="nv">packages</span>\<span class="nv">gensim</span>\<span class="nv">models</span>\<span class="nv">keyedvectors</span>.<span class="nv">py</span>:<span class="mi">877</span>: <span class="nv">FutureWarning</span>: <span class="nv">arrays</span> <span class="nv">to</span> <span class="nv">stack</span> <span class="nv">must</span> <span class="nv">be</span> <span class="nv">passed</span> <span class="nv">as</span> <span class="nv">a</span> <span class="s2">&quot;</span><span class="s">sequence</span><span class="s2">&quot;</span> <span class="nv">type</span> <span class="nv">such</span> <span class="nv">as</span> <span class="nv">list</span> <span class="nv">or</span> <span class="nv">tuple</span>. <span class="nv">Support</span> <span class="k">for</span> <span class="nv">non</span><span class="o">-</span><span class="nv">sequence</span> <span class="nv">iterables</span> <span class="nv">such</span> <span class="nv">as</span> <span class="nv">generators</span> <span class="nv">is</span> <span class="nv">deprecated</span> <span class="nv">as</span> <span class="nv">of</span> <span class="nv">NumPy</span> <span class="mi">1</span>.<span class="mi">16</span> <span class="nv">and</span> <span class="nv">will</span> <span class="nv">raise</span> <span class="nv">an</span> <span class="nv">error</span> <span class="nv">in</span> <span class="nv">the</span> <span class="nv">future</span>.
-  <span class="nv">vectors</span> <span class="o">=</span> <span class="nv">vstack</span><span class="ss">(</span><span class="nv">self</span>.<span class="nv">word_vec</span><span class="ss">(</span><span class="nv">word</span>, <span class="nv">use_norm</span><span class="o">=</span><span class="nv">True</span><span class="ss">)</span> <span class="k">for</span> <span class="nv">word</span> <span class="nv">in</span> <span class="nv">used_words</span><span class="ss">)</span>.<span class="nv">astype</span><span class="ss">(</span><span class="nv">REAL</span><span class="ss">)</span>
+C:\Users\Administrator\Anaconda3\lib\site-packages\gensim\models\keyedvectors.py:877: FutureWarning: arrays to stack must be passed as a &quot;sequence&quot; type such as list or tuple. Support for non-sequence iterables such as generators is deprecated as of NumPy 1.16 and will raise an error in the future.
+  vectors = vstack(self.word_vec(word, use_norm=True) for word in used_words).astype(REAL)
 </pre></div>
 
 
@@ -1068,7 +1069,7 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="n">Word</span> <span class="k">to</span> <span class="n">exclude</span> <span class="k">from</span> <span class="n">the</span> <span class="n">list</span><span class="p">:</span> <span class="n">marge</span>
+<div class="highlight"><pre><span></span>Word to exclude from the list: marge
 </pre></div>
 
 
@@ -1078,16 +1079,16 @@ The <code>.csv</code> file is about 9MB, and includes more than 150K lines of di
 </pre></div>
 
 
-<div class="highlight"><pre><span></span><span class="p">[(</span><span class="s1">&#39;marge&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">5261433124542236</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;husband&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4614260196685791</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;homie&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">449959933757782</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;brunch&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4463199973106384</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;wife&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">44602805376052856</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;marriage&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">44539350271224976</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;grownup&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">44457897543907166</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;wasted&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4415558874607086</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;affair&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4279390275478363</span><span class="p">),</span>
- <span class="p">(</span><span class="s1">&#39;luann&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">.</span><span class="mi">4259093403816223</span><span class="p">)]</span>
+<div class="highlight"><pre><span></span>[(&#39;marge&#39;, 0.5261433124542236),
+ (&#39;husband&#39;, 0.4614260196685791),
+ (&#39;homie&#39;, 0.449959933757782),
+ (&#39;brunch&#39;, 0.4463199973106384),
+ (&#39;wife&#39;, 0.44602805376052856),
+ (&#39;marriage&#39;, 0.44539350271224976),
+ (&#39;grownup&#39;, 0.44457897543907166),
+ (&#39;wasted&#39;, 0.4415558874607086),
+ (&#39;affair&#39;, 0.4279390275478363),
+ (&#39;luann&#39;, 0.4259093403816223)]
 </pre></div>
 
 
