@@ -1,7 +1,7 @@
 Title: sklearn RANSACRegressor Method
 Date: 2019-09-15
 Slug: Blog_1
-cover: https://cdn.pixabay.com/photo/2018/07/03/07/09/block-chain-3513216_960_720.jpg
+cover: /theme/covers/block-chain-3513216_1920
 
 
 # RANdom SAmple Consensus (RANSAC) Method: #

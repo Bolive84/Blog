@@ -1,7 +1,7 @@
 Title: sklearn make_classification and make_regression dataset generators
 Date: 2019-09-30
 Slug: Blog_2
-cover: https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwijxpGBlq7lAhVYoZ4KHX7mBeUQjRx6BAgBEAQ&url=https%3A%2F%2Fwww.american.edu%2Fprograms%2Fshared%2Fdata-science%2F&psig=AOvVaw0w9g3YzupSXUApS3GuN1Eq&ust=1571773325107474
+cover: /theme/covers/block-chain-3513216_1920
 
 # How to Generate Test Data for Machine Learning in Python using Sklearn dataset generators: Make_Regression and Make_Classification: #
 <br>
