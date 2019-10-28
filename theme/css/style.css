@@ -121,7 +121,7 @@ kbd,
 pre,
 samp {
     font-family: monospace, monospace;
-    font-size: 1em
+    font-size: 14px;
 }
 
 button,
@@ -968,7 +968,7 @@ img {
 }
 
 .inner {
-    max-width: 32em;
+    max-width: 50em;
     margin: 0 auto;
     padding: 0 2em
 }

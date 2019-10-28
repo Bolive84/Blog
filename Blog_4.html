@@ -7,7 +7,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
 
-  <title>Introduction To Web Scraping - Testing Requests-HTML Web Parser</title>
+  <title>Introduction To Web Scraping By Testing Requests-HTML Web Parser</title>
 
 
   <meta name="HandheldFriendly" content="True" />
@@ -48,7 +48,7 @@
 
 <!-- Open Graph -->
 <meta property="og:site_name" content="Benoit's Blog"/>
-<meta property="og:title" content="Introduction To Web Scraping - Testing Requests-HTML Web Parser"/>
+<meta property="og:title" content="Introduction To Web Scraping By Testing Requests-HTML Web Parser"/>
 <meta property="og:description" content="Testing Requests-HTML Web Parser What is web scraping all about? Well, according to Wikipedia, Web scraping, web harvesting, or web data..."/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:url" content="https://Bolive84.github.io/Blog/Blog_4.html"/>
@@ -65,8 +65,8 @@
 {
   "@context": "http://schema.org",
   "@type": "Article",
-  "name": "Introduction To Web Scraping - Testing Requests-HTML Web Parser",
-  "headline": "Introduction To Web Scraping - Testing Requests-HTML Web Parser",
+  "name": "Introduction To Web Scraping By Testing Requests-HTML Web Parser",
+  "headline": "Introduction To Web Scraping By Testing Requests-HTML Web Parser",
   "datePublished": "2019-10-28 00:00:00-04:00",
   "dateModified": "",
   "author": {
@@ -78,7 +78,11 @@
   "url": "https://Bolive84.github.io/Blog/Blog_4.html",
   "description": "Testing Requests-HTML Web Parser What is web scraping all about? Well, according to Wikipedia, Web scraping, web harvesting, or web data..."
 }
-</script>
+</script>  <style>
+    .inner{
+      max-width: 50em;
+    }
+  </style>
 </head>
 <!-- TODO : Body class -->
 <body class="home-template">
@@ -110,7 +114,7 @@
             <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
           </span>
         </nav>
-        <h1 class="post-title">Introduction To Web Scraping - Testing Requests-HTML Web Parser</h1>
+        <h1 class="post-title">Introduction To Web Scraping By Testing Requests-HTML Web Parser</h1>
         <!-- TODO : Proper class for headline -->
         <span class="post-meta">
                 <a href="https://Bolive84.github.io/Blog/author/benoit-olive.html">Benoit Olive</a>
@@ -132,10 +136,11 @@
                 <p><img alt="png" src="images/Blog_4/web_scraping2.png"></p>
 <p><center><h1> Testing Requests-HTML Web Parser <h1/></center>
 <h2> What is web scraping all about? </h2>
-Well, according to Wikipedia, <br></p>
+<br>
+<br> Well, according to Wikipedia, <br></p>
 <p><b><em>Web scraping, web harvesting, or web data extraction is data scraping used for extracting data from websites. While web scraping can be done manually by a software user, the term typically refers to automated processes implemented using a bot or web crawler. It is a form of copying, in which specific data is gathered and copied from the web, typically into a central local database or spreadsheet, for later retrieval or analysis.</em></b></p>
-<p>Most websites do not offer the functionality to save a copy of this data for personal use. The only option then is to manually copy and paste the data which can become very tedious to complete. Web Scraping is the technique of automating this process, so that instead of manually copying the data from websites, the Web Scraper will help you to perform the same task within a fraction of the time. Ok sounds great, but how this works exactly?</p>
-<p>For this first try, I am going to use <b>- Requests-HTML -</b>a library intending to make parsing HTML as simple and intuitive as possible.This library has been created by Kenneth Reitz, the first version has been released on February 2018 and the last update was made on February 2019, - 10.3k stars, 644 forks, 83 reported issues - let's check it out!</p>
+<p>Most websites do not offer the functionality to save a copy of this data for personal use. The only option then is to manually copy and paste the data which can become very tedious to complete. Web Scraping is the technique of automating this process, so that instead of manually copying the data from websites, the Web Scraper will help you to perform the same task within a fraction of the time. Ok, sounds great, but how this works exactly?</p>
+<p>For this first try, I am going to use <b> Requests-HTML </b>, a library intending to make parsing HTML as simple and intuitive as possible. This library has been created by Kenneth Reitz, the first version has been released on February 2018 and the last update was made on February 2019, - 10.3k stars, 644 forks, 83 reported issues - let's check it out!</p>
 <p>I think the best way to test the efficacy if this tool will be to go through the github tutorial (https://github.com/psf/requests-html/blob/master/README.rst), follow it step by step to try to gather some data I am interested in.</p>
 <p>Here is a brief description of how I am going to proceed:
     1. Install request-html
@@ -145,16 +150,15 @@ Well, according to Wikipedia, <br></p>
 <h3> 1. Install Library </h3>
 
 <p>Please note that only <strong>Python 3.6</strong> is supported, not ideal as <strong>Python 3.8</strong> just came out, but let's downgrade to Python 3.6 and pip install the library:</p>
-<div class="highlight"><pre><span></span>&gt; pip install requests-html<span class="sb">```</span>
-
-&lt;h3&gt; <span class="m">2</span>. Make Basic Requests &lt;/h3&gt;
-
-Let<span class="err">&#39;</span>s import <span class="sb">`</span>HTMLSession<span class="sb">`</span>.
+<div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">pip</span> <span class="n">install</span> <span class="n">requests</span><span class="o">-</span><span class="n">html</span>
+</pre></div>
 
 
-​<span class="sb">```</span>python
-from requests_html import HTMLSession
-<span class="nv">session</span> <span class="o">=</span> HTMLSession<span class="o">()</span>
+<h3> 2. Make Basic Requests </h3>
+
+<p>Let's import <code>HTMLSession</code>.</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">requests_html</span> <span class="kn">import</span> <span class="n">HTMLSession</span>
+<span class="n">session</span> <span class="o">=</span> <span class="n">HTMLSession</span><span class="p">()</span>
 </pre></div>
 
 
@@ -251,7 +255,7 @@ from requests_html import HTMLSession
 </pre></div>
 
 
-<p>And this gives me direct acces to this item's content with <code>.text</code>:</p>
+<p>And this gives me direct access to this item's content with <code>.text</code>:</p>
 <div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">voting_tab</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
 </pre></div>
 
@@ -285,8 +289,7 @@ Media
 </pre></div>
 
 
-<p>Waouh! That's great!</p>
-<p>What about inspecting a particular element within this item? No problem! Use <code>.find</code></p>
+<p>That's great! What about inspecting a particular element within this item? No problem! Use <code>.find</code></p>
 <div class="highlight"><pre><span></span><span class="n">voting_tab</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -433,9 +436,10 @@ RuntimeError: Cannot use HTMLSession within an existing event loop. Use AsyncHTM
 
 <p>😬  Oops... This method raises a <b>RuntimeError</b>. So, as indicated in the error message, let's see if using AsyncHTMLSession solves our issue:</p>
 <p>Please note that with AsyncHTMLSession, you will need to use <code>html.arender()</code> to render dynamic content, you should format your request as follows: <br></p>
-<blockquote>
-<p>await r.html.arender()</p>
-</blockquote>
+<div class="highlight"><pre><span></span><span class="o">&gt;</span> <span class="n">await</span> <span class="n">r</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">arender</span><span class="p">()</span>
+</pre></div>
+
+
 <div class="highlight"><pre><span></span><span class="n">r5</span> <span class="o">=</span> <span class="n">await</span> <span class="n">asession</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://days.to/until/fifa-world-cup-2022&#39;</span><span class="p">)</span>
 </pre></div>
 
@@ -502,12 +506,12 @@ RuntimeError: Cannot use HTMLSession within an existing event loop. Use AsyncHTM
 <p><img alt="gif" src="images/Blog_4/practice.gif"></p>
 <h3> 4. Conclusion </h3>
 
-<p>I would only recommend this library if you want to make basic requests as grabbing links, attibutes, or text, from a url. However, if you have to parse more complex websites, this library will become harder to use and some workaround will be required to reach the information that you need. Personally, going through the official tutorial has not been sufficient to solve the issues I encountered. On top of that, <b>requests-HTML</b> has a substantial number of open issues on Pypi.org and Github (~80 at the moment). So, before using it,  I would suggest you have a look at this website: https://www.scraperapi.com/blog/the-10-best-web-scraping-tools that will help you to select the best library based on the problem you are trying to solve, and also give a try to Gazpacho (https://pypi.org/project/gazpacho/), which just came out, has no reported issues so far, and will help you to tackle most of your tasks in a very fast and easy way!</p>
+<p>I would only recommend this library if you want to make basic requests as grabbing links, attibutes, or text, from a url. However, if you have to parse more complex websites, this library will become harder to use and some workaround will be required to reach the information that you need. Personally, going through the official tutorial has not been sufficient to solve the issues I encountered. On top of that, <b>Requests-HTML</b> has a substantial number of open issues on Pypi.org and Github (~80 at the moment). So, before using it,  I would suggest you have a look at this website: https://www.scraperapi.com/blog/the-10-best-web-scraping-tools that will help you to select the best library based on the problem you are trying to solve, and also give a try to Gazpacho (https://pypi.org/project/gazpacho/), which just came out, has no reported issues so far, and will help you to tackle most of your tasks in a very fast and easy way!</p>
             </section>
 
             <section class="post-info">
                 <div class="post-share">
-                    <a class="twitter" href="https://twitter.com/share?text=Introduction To Web Scraping - Testing Requests-HTML Web Parser&amp;url=https://Bolive84.github.io/Blog/Blog_4.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <a class="twitter" href="https://twitter.com/share?text=Introduction To Web Scraping By Testing Requests-HTML Web Parser&amp;url=https://Bolive84.github.io/Blog/Blog_4.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                     <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
                     </a>
                     <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://Bolive84.github.io/Blog/Blog_4.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">

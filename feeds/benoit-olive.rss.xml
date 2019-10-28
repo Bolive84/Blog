@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0"><channel><title>Benoit's Blog - Benoit Olive</title><link>https://Bolive84.github.io/Blog/</link><description></description><lastBuildDate>Mon, 28 Oct 2019 00:00:00 -0400</lastBuildDate><item><title>Introduction To Web Scraping - Testing Requests-HTML Web Parser</title><link>https://Bolive84.github.io/Blog/Blog_4.html</link><description>&lt;p&gt;&lt;img alt="png" src="images/Blog_4/web_scraping2.png"&gt;&lt;/p&gt;
+<rss version="2.0"><channel><title>Benoit's Blog - Benoit Olive</title><link>https://Bolive84.github.io/Blog/</link><description></description><lastBuildDate>Mon, 28 Oct 2019 00:00:00 -0400</lastBuildDate><item><title>Introduction To Web Scraping By Testing Requests-HTML Web Parser</title><link>https://Bolive84.github.io/Blog/Blog_4.html</link><description>&lt;p&gt;&lt;img alt="png" src="images/Blog_4/web_scraping2.png"&gt;&lt;/p&gt;
 &lt;p&gt;&lt;center&gt;&lt;h1&gt; Testing Requests-HTML Web Parser &lt;h1/&gt;&lt;/center&gt;
 &lt;h2&gt; What is web scraping all about? &lt;/h2&gt;
-Well, according to Wikipedia, &lt;br&gt;&lt;/p&gt;
+&lt;br&gt;
+&lt;br&gt; Well, according to Wikipedia, &lt;br&gt;&lt;/p&gt;
 &lt;p&gt;&lt;b&gt;&lt;em&gt;Web scraping, web harvesting, or web data extraction is data scraping used for extracting data from websites. While web scraping can be done manually by a software user, the term typically refers to automated processes implemented …&lt;/em&gt;&lt;/b&gt;&lt;/p&gt;</description><dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Benoit Olive</dc:creator><pubDate>Mon, 28 Oct 2019 00:00:00 -0400</pubDate><guid isPermaLink="false">tag:bolive84.github.io,2019-10-28:/Blog/Blog_4.html</guid></item><item><title>Introduction To Word Embeddings - How To Train Your Own Word Vectors Using The Simpsons Dialogues?</title><link>https://Bolive84.github.io/Blog/Blog_3.html</link><description>&lt;p&gt;&lt;font color='darkblue'&gt;&lt;br&gt;
 &lt;h2&gt; &lt;center&gt;Introduction To Word Embeddings&lt;/center&gt;  &lt;br&gt;  &lt;center&gt; &lt;i&gt;How To Train Your Own Word Vectors Using The Simpsons Dialogues? &lt;/i&gt; &lt;/center&gt;
 &lt;/h2&gt;
