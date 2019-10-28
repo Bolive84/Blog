@@ -5,7 +5,7 @@ import os
 
 AUTHOR = 'Benoit Olive'
 SITENAME = 'Benoit\'s Blog'
-HOME_COVER = '/content/images/blog_cover.jpg'
+HOME_COVER = '/theme/images/home-bg.jpg'
 SITEURL = 'https://Bolive84.github.io/Blog'
 PATH = 'content'
 STATIC_PATHS = ['images']
