@@ -1,11 +1,7 @@
 Title: Introduction To Word Embeddings - How To Train Your Own Word Vectors Using The Simpsons Dialogues?
 Date: 2019-10-07
 Slug: Blog_3
-<<<<<<< HEAD
-cover: https://cdn.pixabay.com/photo/2018/07/03/07/09/block-chain-3513216_960_720.jpg
-=======
-cover: /assets/images/article_cover.jpg
->>>>>>> f72aa99d6090b9169cad31621d623daad9052776
+cover: /images/article_cover.jpg
 
 <font color='darkblue'>  
 <h2> <center>Introduction To Word Embeddings</center>  <br>  <center> <i>How To Train Your Own Word Vectors Using The Simpsons Dialogues? </i> </center>

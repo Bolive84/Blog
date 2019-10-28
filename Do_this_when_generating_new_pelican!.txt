@@ -1,0 +1,3 @@
+Make sure to use this url for the blog cover image when generating a new pelican theme:
+
+<div class="blog-cover cover" style="background-image: url('https://bolive84.github.io/Blog/images/blog_cover.jpg')">

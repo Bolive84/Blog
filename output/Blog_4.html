@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+  <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+
+  <title>Introduction To Web Scraping - Testing Requests-HTML Web Parser</title>
+
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="origin" />
+  <meta name="generator" content="Pelican" />
+<link href="https://Bolive84.github.io/Blog/Blog_4.html" rel="canonical" />
+  <!-- Feed -->
+        <link href="https://Bolive84.github.io/Blog/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Benoit's Blog Full Atom Feed" />
+          <link href="https://Bolive84.github.io/Blog/feeds/{'slug': u'misc'}.atom.xml" type="application/atom+xml" rel="alternate" title="Benoit's Blog Categories Atom Feed" />
+
+  <link href="https://Bolive84.github.io/Blog/theme/css/style.css" type="text/css" rel="stylesheet" />
+
+  <!-- Code highlight color scheme -->
+      <link href="https://Bolive84.github.io/Blog/theme/css/code_blocks/github.css" rel="stylesheet">
+
+
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+  <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+
+
+
+    <meta name="description" content="Testing Requests-HTML Web Parser What is web scraping all about? Well, according to Wikipedia, Web scraping, web harvesting, or web data...">
+
+    <meta name="author" content="Benoit Olive">
+
+
+
+
+
+<!-- Open Graph -->
+<meta property="og:site_name" content="Benoit's Blog"/>
+<meta property="og:title" content="Introduction To Web Scraping - Testing Requests-HTML Web Parser"/>
+<meta property="og:description" content="Testing Requests-HTML Web Parser What is web scraping all about? Well, according to Wikipedia, Web scraping, web harvesting, or web data..."/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:url" content="https://Bolive84.github.io/Blog/Blog_4.html"/>
+<meta property="og:type" content="article"/>
+<meta property="article:published_time" content="2019-10-28 00:00:00-04:00"/>
+<meta property="article:modified_time" content=""/>
+<meta property="article:author" content="https://Bolive84.github.io/Blog/author/benoit-olive.html">
+<meta property="article:section" content="misc"/>
+<meta property="og:image" content="https://Bolive84.github.io/Blog//images/article_cover.jpg">
+
+<!-- Twitter Card -->
+
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "Article",
+  "name": "Introduction To Web Scraping - Testing Requests-HTML Web Parser",
+  "headline": "Introduction To Web Scraping - Testing Requests-HTML Web Parser",
+  "datePublished": "2019-10-28 00:00:00-04:00",
+  "dateModified": "",
+  "author": {
+    "@type": "Person",
+    "name": "Benoit Olive",
+    "url": "https://Bolive84.github.io/Blog/author/benoit-olive.html"
+  },
+  "image": "https://Bolive84.github.io/Blog//images/article_cover.jpg",
+  "url": "https://Bolive84.github.io/Blog/Blog_4.html",
+  "description": "Testing Requests-HTML Web Parser What is web scraping all about? Well, according to Wikipedia, Web scraping, web harvesting, or web data..."
+}
+</script>
+</head>
+<!-- TODO : Body class -->
+<body class="home-template">
+
+<nav id="menu">
+  <a class="close-button">Close</a>
+  <div class="nav-wrapper">
+    <p class="nav-label">Menu</p>
+    <ul>
+
+
+    </ul>
+  </div>
+</nav>
+    <!-- Progressbar -->
+    <div class="progress-container">
+        <span class="progress-bar"></span>
+    </div>
+
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="post-header" class="has-cover">
+      <div class="inner">
+        <nav id="navigation">
+            <span id="home-button" class="nav-button">
+                <a class="home-button" href="https://Bolive84.github.io/Blog/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+            </span>
+          <span id="menu-button" class="nav-button">
+            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+          </span>
+        </nav>
+        <h1 class="post-title">Introduction To Web Scraping - Testing Requests-HTML Web Parser</h1>
+        <!-- TODO : Proper class for headline -->
+        <span class="post-meta">
+                <a href="https://Bolive84.github.io/Blog/author/benoit-olive.html">Benoit Olive</a>
+            | <time datetime="Mon 28 October 2019">Mon 28 October 2019</time>
+        </span>
+        <!-- TODO : Modified check -->
+            <div class="post-cover cover" style="background-image: url('https://Bolive84.github.io/Blog//images/article_cover.jpg')">
+      </div>
+    </header>
+
+  <section id="wrapper">
+    <a class="hidden-close"></a>
+
+    <!-- Post content -->
+    <main class="content" role="main">
+        <article class="post">
+        <div class="inner">
+            <section class="post-content">
+                <p><img alt="png" src="images/Blog_4/web_scraping2.png"></p>
+<p><center><h1> Testing Requests-HTML Web Parser <h1/></center>
+<h2> What is web scraping all about? </h2>
+Well, according to Wikipedia, <br></p>
+<p><b><em>Web scraping, web harvesting, or web data extraction is data scraping used for extracting data from websites. While web scraping can be done manually by a software user, the term typically refers to automated processes implemented using a bot or web crawler. It is a form of copying, in which specific data is gathered and copied from the web, typically into a central local database or spreadsheet, for later retrieval or analysis.</em></b></p>
+<p>Most websites do not offer the functionality to save a copy of this data for personal use. The only option then is to manually copy and paste the data which can become very tedious to complete. Web Scraping is the technique of automating this process, so that instead of manually copying the data from websites, the Web Scraper will help you to perform the same task within a fraction of the time. Ok sounds great, but how this works exactly?</p>
+<p>For this first try, I am going to use <b>- Requests-HTML -</b>a library intending to make parsing HTML as simple and intuitive as possible.This library has been created by Kenneth Reitz, the first version has been released on February 2018 and the last update was made on February 2019, - 10.3k stars, 644 forks, 83 reported issues - let's check it out!</p>
+<p>I think the best way to test the efficacy if this tool will be to go through the github tutorial (https://github.com/psf/requests-html/blob/master/README.rst), follow it step by step to try to gather some data I am interested in.</p>
+<p>Here is a brief description of how I am going to proceed:
+    1. Install request-html
+    2. Make basic requests
+    3. Try more complex requests
+    4. Share my final thoughts about the library</p>
+<h3> 1. Install Library </h3>
+
+<p>Please note that only <strong>Python 3.6</strong> is supported, not ideal as <strong>Python 3.8</strong> just came out, but let's downgrade to Python 3.6 and pip install the library:</p>
+<div class="highlight"><pre><span></span>&gt; pip install requests-html<span class="sb">```</span>
+
+&lt;h3&gt; <span class="m">2</span>. Make Basic Requests &lt;/h3&gt;
+
+Let<span class="err">&#39;</span>s import <span class="sb">`</span>HTMLSession<span class="sb">`</span>.
+
+
+​<span class="sb">```</span>python
+from requests_html import HTMLSession
+<span class="nv">session</span> <span class="o">=</span> HTMLSession<span class="o">()</span>
+</pre></div>
+
+
+<p>And make a <code>get</code> request, which allows us to connect to the url we want to connect to:</p>
+<div class="highlight"><pre><span></span><span class="n">r</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://www.elections.ca/home.aspx&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Then, it becomes easy to grab the list of all links on the page by using <code>html.links</code>:</p>
+<div class="highlight"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">links</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>{&#39;/Scripts/vis/FindED?L=e&amp;QID=-1&amp;PAGEID=20&#39;,
+ &#39;/content.aspx?section=abo&amp;dir=pri&amp;document=index&amp;lang=e&#39;,
+ &#39;/content.aspx?section=abo&amp;document=index&amp;lang=e&#39;,
+ &#39;/content.aspx?section=cont&amp;dir=soc&amp;document=index&amp;lang=e&#39;,
+ &#39;/content.aspx?section=ele&amp;document=index&amp;lang=e&#39;,
+ &#39;/content.aspx?section=fin&amp;document=index&amp;lang=e&#39;,
+ &#39;/content.aspx?section=med&amp;document=index&amp;lang=e&#39;,
+ &#39;/content.aspx?section=pol&amp;dir=par&amp;document=index&amp;lang=e&#39;,
+ &#39;/content.aspx?section=pol&amp;document=index&amp;lang=e&#39;,
+ &#39;/content.aspx?section=pri&amp;document=index&amp;lang=e&#39;,
+ &#39;/content.aspx?section=res&amp;dir=cir/maps2&amp;document=index&amp;lang=e&#39;,
+ &#39;/content.aspx?section=res&amp;document=index&amp;lang=e&#39;,
+ &#39;/content.aspx?section=vot&amp;document=index&amp;lang=e&#39;,
+ &#39;/content2.aspx?section=acc&amp;document=index&amp;lang=e&#39;,
+ &#39;/content2.aspx?section=can&amp;document=index&amp;lang=e&#39;,
+ &#39;/content2.aspx?section=conge&amp;document=index&amp;lang=e&#39;,
+ &#39;/content2.aspx?section=faq&amp;dir=votinghours&amp;document=index&amp;lang=e&#39;,
+ &#39;/content2.aspx?section=faq&amp;document=fac&amp;lang=e&#39;,
+ &#39;/content2.aspx?section=faq&amp;document=fedelect&amp;lang=e&#39;,
+ &#39;/content2.aspx?section=faq&amp;document=index&amp;lang=e&#39;,
+ &#39;/content2.aspx?section=id&amp;document=index&amp;lang=e&#39;,
+ &#39;/content2.aspx?section=job&amp;document=index&amp;lang=e&#39;,
+ &#39;/content2.aspx?section=reg&amp;document=index&amp;lang=e&#39;,
+ &#39;/content2.aspx?section=sec&amp;document=index&amp;lang=e&#39;,
+ &#39;/content2.aspx?section=secure&amp;document=index&amp;lang=e&#39;,
+ &#39;/content2.aspx?section=spr&amp;document=index&amp;lang=e&#39;,
+ &#39;/content2.aspx?section=svr&amp;document=index&amp;lang=e&#39;,
+ &#39;/content2.aspx?section=vote&amp;dir=vic&amp;document=index&amp;lang=e&#39;,
+ &#39;/content2.aspx?section=vote&amp;document=index&amp;lang=e&#39;,
+ &#39;/home.aspx&#39;,
+ &#39;accueil.aspx&#39;,
+ &#39;home.aspx&#39;,
+ &#39;http://laws-lois.justice.gc.ca/eng/acts/E-2.01/index.html&#39;,
+ &#39;https://enr.elections.ca/National.aspx?lang=e&#39;}
+</pre></div>
+
+
+<p>... or the list of absolute links only with <code>html.absolute_links</code>:</p>
+<div class="highlight"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">absolute_links</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>{&#39;http://laws-lois.justice.gc.ca/eng/acts/E-2.01/index.html&#39;,
+ &#39;https://enr.elections.ca/National.aspx?lang=e&#39;,
+ &#39;https://www.elections.ca/Scripts/vis/FindED?L=e&amp;QID=-1&amp;PAGEID=20&#39;,
+ &#39;https://www.elections.ca/accueil.aspx&#39;,
+ &#39;https://www.elections.ca/content.aspx?section=abo&amp;dir=pri&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content.aspx?section=abo&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content.aspx?section=cont&amp;dir=soc&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content.aspx?section=ele&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content.aspx?section=fin&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content.aspx?section=med&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content.aspx?section=pol&amp;dir=par&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content.aspx?section=pol&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content.aspx?section=pri&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content.aspx?section=res&amp;dir=cir/maps2&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content.aspx?section=res&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content.aspx?section=vot&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=acc&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=can&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=conge&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=faq&amp;dir=votinghours&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=faq&amp;document=fac&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=faq&amp;document=fedelect&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=faq&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=id&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=job&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=reg&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=sec&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=secure&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=spr&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=svr&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=vote&amp;dir=vic&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=vote&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/home.aspx&#39;}
+</pre></div>
+
+
+<p>Now, I want to try to select one specific item with a CSS selector, this is possible with <code>html.find</code>:</p>
+<div class="highlight"><pre><span></span><span class="n">voting_tab</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;#topnavlist&#39;</span><span class="p">,</span> <span class="n">first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+
+<p>And this gives me direct acces to this item's content with <code>.text</code>:</p>
+<div class="highlight"><pre><span></span><span class="k">print</span><span class="p">(</span><span class="n">voting_tab</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>Voting
+(Home)
+Spread
+the word
+Jobs
+Candidates, Parties
+&amp; Third Parties
+Media
+</pre></div>
+
+
+<p>Awesome! Can we get all the attributes from this item now? Yep! with <code>.attrs</code></p>
+<div class="highlight"><pre><span></span><span class="n">voting_tab</span><span class="o">.</span><span class="n">attrs</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>{&#39;id&#39;: &#39;topnavlist&#39;, &#39;class&#39;: (&#39;navul&#39;, &#39;open&#39;, &#39;left&#39;)}
+</pre></div>
+
+
+<p>or render out the HTML code behind it? Of course, this is easy you can use <code>.html</code></p>
+<div class="highlight"><pre><span></span><span class="n">voting_tab</span><span class="o">.</span><span class="n">html</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>&#39;<span class="nt">&lt;ul</span> <span class="na">id=</span><span class="s">&quot;topnavlist&quot;</span> <span class="na">class=</span><span class="s">&quot;navul open left&quot;</span><span class="nt">&gt;</span>\n<span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&quot;current&quot;</span><span class="nt">&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/home.aspx&quot;</span><span class="nt">&gt;</span>Voting<span class="nt">&lt;br/&gt;</span> (Home)<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>\n<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/content2.aspx?section=spr&amp;amp;document=index&amp;amp;lang=e&quot;</span><span class="nt">&gt;</span>Spread<span class="nt">&lt;br/&gt;</span> the word<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>\n<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/content2.aspx?section=job&amp;amp;document=index&amp;amp;lang=e&quot;</span><span class="nt">&gt;</span>Jobs<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>\n<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">class=</span><span class="s">&quot;larger&quot;</span> <span class="na">href=</span><span class="s">&quot;/content2.aspx?section=can&amp;amp;document=index&amp;amp;lang=e&quot;</span><span class="nt">&gt;</span>Candidates, Parties <span class="nt">&lt;br/&gt;</span><span class="ni">&amp;amp;</span> Third Parties<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>\n<span class="c">&lt;!--&lt;li&gt;&lt;a class=&quot;allcaps&quot; href=&quot;/content2.aspx?section=thi&amp;amp;document=index&amp;amp;lang=e&quot;&gt;Accessibility&lt;/a&gt;&lt;/li&gt;--&gt;</span>\n<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/content.aspx?section=med&amp;amp;document=index&amp;amp;lang=e&quot;</span><span class="nt">&gt;</span>Media<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>\n<span class="nt">&lt;/ul&gt;</span>&#39;
+</pre></div>
+
+
+<p>Waouh! That's great!</p>
+<p>What about inspecting a particular element within this item? No problem! Use <code>.find</code></p>
+<div class="highlight"><pre><span></span><span class="n">voting_tab</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>[&lt;Element &#39;a&#39; href=&#39;/home.aspx&#39;&gt;,
+ &lt;Element &#39;a&#39; href=&#39;/content2.aspx?section=spr&amp;document=index&amp;lang=e&#39;&gt;,
+ &lt;Element &#39;a&#39; href=&#39;/content2.aspx?section=job&amp;document=index&amp;lang=e&#39;&gt;,
+ &lt;Element &#39;a&#39; class=(&#39;larger&#39;,) href=&#39;/content2.aspx?section=can&amp;document=index&amp;lang=e&#39;&gt;,
+ &lt;Element &#39;a&#39; href=&#39;/content.aspx?section=med&amp;document=index&amp;lang=e&#39;&gt;]
+</pre></div>
+
+
+<p>Here you can use <code>.absolute_links</code> on this specific item, just as we did earlier on the website home page.</p>
+<div class="highlight"><pre><span></span><span class="n">voting_tab</span><span class="o">.</span><span class="n">absolute_links</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>{&#39;https://www.elections.ca/content.aspx?section=med&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=can&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=job&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/content2.aspx?section=spr&amp;document=index&amp;lang=e&#39;,
+ &#39;https://www.elections.ca/home.aspx&#39;}
+</pre></div>
+
+
+<p>It is also possible to search for text on the page we are looking at:</p>
+<div class="highlight"><pre><span></span><span class="n">r</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;Elections Canada is the {} responsible for conducting federal elections and referendums.&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>&#39;independent, non-partisan agency&#39;
+</pre></div>
+
+
+<p><img alt="gif" src="images/Blog_4/applause.gif"></p>
+<h3> 3. Try More Complex Requests </h3>
+
+<p>Requests-HTML killed all basic requests, so it is time now to see how it performs when it becomes a little trickier!</p>
+<p>With AsyncHTMLSession, we should be able to connect to multiple urls at the same time, using functions and <code>.run</code> method. Also, make sure to use <code>await</code> along with <code>.get</code> to connect to an url:</p>
+<div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">nest_asyncio</span>
+<span class="n">nest_asyncio</span><span class="o">.</span><span class="n">apply</span><span class="p">()</span>
+
+<span class="kn">from</span> <span class="nn">requests_html</span> <span class="kn">import</span> <span class="n">AsyncHTMLSession</span>
+<span class="n">asession</span> <span class="o">=</span> <span class="n">AsyncHTMLSession</span><span class="p">()</span>
+
+<span class="n">async</span> <span class="k">def</span> <span class="nf">get_pythonorg</span><span class="p">():</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">await</span> <span class="n">asession</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://newsinteractives.cbc.ca/elections/federal/2019/results/&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span>
+<span class="n">async</span> <span class="k">def</span> <span class="nf">get_reddit</span><span class="p">():</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">await</span> <span class="n">asession</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://www.elections.ca/home.aspx&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span>
+<span class="n">async</span> <span class="k">def</span> <span class="nf">get_google</span><span class="p">():</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="n">await</span> <span class="n">asession</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://nationalpost.com/news/politics/election-2019/canadian-federal-election-live-riding-map-results&#39;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">r</span>
+
+<span class="n">results</span> <span class="o">=</span> <span class="n">asession</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">get_pythonorg</span><span class="p">,</span> <span class="n">get_reddit</span><span class="p">,</span> <span class="n">get_google</span><span class="p">)</span>
+<span class="n">results</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>[&lt;Response [200]&gt;, &lt;Response [200]&gt;, &lt;Response [200]&gt;]
+</pre></div>
+
+
+<p>This preliminary step will allow us to send our requests to all targeted websites and use all types of requests we have used on a single url like <code>.url</code>, <code>.text</code>, <code>.links</code>, etc. :</p>
+<div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">result</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">url</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>https://www.elections.ca/home.aspx
+https://nationalpost.com/news/politics/election-2019/canadian-federal-election-live-riding-map-results
+https://newsinteractives.cbc.ca/elections/federal/2019/results/
+</pre></div>
+
+
+<p>🚨 Please note that if you do not import <code>nest_asyncio</code> and use <code>nest_asyncio.apply()</code> you will receive the following runtime error: <br> &gt; <b>RuntimeError</b>: This event loop is already running</p>
+<p>Let's test our tool with a more complex CSS Selector:</p>
+<div class="highlight"><pre><span></span><span class="n">r2</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://newsinteractives.cbc.ca/elections/federal/2019/results/&#39;</span><span class="p">)</span>
+<span class="n">selection</span> <span class="o">=</span> <span class="s1">&#39;#main &gt; section.story-cta.contents &gt; div &gt; div.component-intro__dek.small-margin &gt; p&#39;</span>
+<span class="k">print</span><span class="p">(</span><span class="n">r2</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="n">selection</span><span class="p">,</span> <span class="n">first</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>Justin Trudeau will be returning to the Prime Minister&#39;s Office, but this time he will be leading a Liberal minority government. The Bloc Québécois will enter the 43rd Parliament with a far stronger presence. The NDP surge some pollsters anticipated did not materialize but the party does have enough seats to hold the balance of power in a Liberal minority government. The Conservatives increased their share of the popular vote and their seat count and continue to be the official opposition.
+</pre></div>
+
+
+<p>And it looks like XPath is supported too (make sure to copy full XPath though!)</p>
+<div class="highlight"><pre><span></span><span class="n">r2</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">xpath</span><span class="p">(</span><span class="s1">&#39;/html/body/div[1]/main&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>[&lt;Element &#39;main&#39; id=&#39;main&#39; class=(&#39;results&#39;, &#39;results-post&#39;, &#39;aria-hideable&#39;)&gt;]
+</pre></div>
+
+
+<p>This library is also supposed to provide a full Javascript support, let's make sure this is the case:</p>
+<p>We need to grab some text that’s rendered by JavaScript, for example the countdown to FIFA World Cup 2022 in Qatar:</p>
+<div class="highlight"><pre><span></span><span class="n">r4</span> <span class="o">=</span> <span class="n">session</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://days.to/until/fifa-world-cup-2022&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">r4</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;Sunday, 18 December 2022 00:00{}until the start&#39;</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>&#39;\r\n        <span class="nt">&lt;/time&gt;</span>\r\n\r\n                                <span class="nt">&lt;/div&gt;</span>\r\n                                                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;event-location&quot;</span><span class="nt">&gt;</span>\r\n                                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;event-location-label&quot;</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">&quot;fa fa-map-marker&quot;</span> <span class="na">title=</span><span class="s">&quot;Location&quot;</span><span class="nt">&gt;&lt;/i&gt;&lt;/span&gt;</span>\r\n                                        <span class="nt">&lt;span&gt;</span>Qatar<span class="nt">&lt;/span&gt;</span>\r\n                                <span class="nt">&lt;/div&gt;</span>\r\n                                                                                                                                        <span class="nt">&lt;/div&gt;</span>\r\n\r\n            <span class="nt">&lt;/div&gt;</span>\r\n            \r\n        <span class="nt">&lt;/div&gt;</span>\r\n            <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;counter&quot;</span><span class="nt">&gt;</span>\r\n                <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;countdown-days&quot;</span><span class="nt">&gt;</span>\r\n                    There are <span class="nt">&lt;strong&gt;</span>1119 days  until FIFA World Cup 2022<span class="nt">&lt;/strong&gt;</span>\r\n                <span class="nt">&lt;/div&gt;</span>\r\n                <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;countdown-days-suffix&quot;</span><span class="nt">&gt;</span> &#39;
+</pre></div>
+
+
+<p>In order to see the dynamic countdown, we are told to use the <code>.render()</code> method, that was made to render dynamic content just like on a web page:</p>
+<div class="highlight"><pre><span></span><span class="n">r4</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">render</span><span class="p">()</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>---------------------------------------------------------------------------
+
+RuntimeError                              Traceback (most recent call last)
+
+&lt;ipython-input-19-5fb26eabc75d&gt; in &lt;module&gt;
+----&gt; 1 r4.html.render()
+
+
+~/anaconda3/lib/python3.6/site-packages/requests_html.py in render(self, retries, script, wait, scrolldown, sleep, reload, timeout, keep_page)
+    584         &quot;&quot;&quot;
+    585
+--&gt; 586         self.browser = self.session.browser  # Automatically create a event loop and browser
+    587         content = None
+    588
+
+
+~/anaconda3/lib/python3.6/site-packages/requests_html.py in browser(self)
+    727             self.loop = asyncio.get_event_loop()
+    728             if self.loop.is_running():
+--&gt; 729                 raise RuntimeError(&quot;Cannot use HTMLSession within an existing event loop. Use AsyncHTMLSession instead.&quot;)
+    730             self._browser = self.loop.run_until_complete(super().browser)
+    731         return self._browser
+
+
+RuntimeError: Cannot use HTMLSession within an existing event loop. Use AsyncHTMLSession instead.
+</pre></div>
+
+
+<p>😬  Oops... This method raises a <b>RuntimeError</b>. So, as indicated in the error message, let's see if using AsyncHTMLSession solves our issue:</p>
+<p>Please note that with AsyncHTMLSession, you will need to use <code>html.arender()</code> to render dynamic content, you should format your request as follows: <br></p>
+<blockquote>
+<p>await r.html.arender()</p>
+</blockquote>
+<div class="highlight"><pre><span></span><span class="n">r5</span> <span class="o">=</span> <span class="n">await</span> <span class="n">asession</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;https://days.to/until/fifa-world-cup-2022&#39;</span><span class="p">)</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span><span class="n">await</span> <span class="n">r5</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">arender</span><span class="p">()</span>
+<span class="n">r5</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;Sunday, 18 December 2022 00:00{days}until the start&#39;</span><span class="p">)[</span><span class="s1">&#39;days&#39;</span><span class="p">]</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>&#39;\n        <span class="nt">&lt;/time&gt;</span>\n\n                                <span class="nt">&lt;/div&gt;</span>\n                                                            <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;event-location&quot;</span><span class="nt">&gt;</span>\n                                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;event-location-label&quot;</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">&quot;fa fa-map-marker&quot;</span> <span class="na">title=</span><span class="s">&quot;Location&quot;</span><span class="nt">&gt;&lt;/i&gt;&lt;/span&gt;</span>\n                                        <span class="nt">&lt;span&gt;</span>Qatar<span class="nt">&lt;/span&gt;</span>\n                                <span class="nt">&lt;/div&gt;</span>\n                                                                                                                                        <span class="nt">&lt;/div&gt;</span>\n\n            <span class="nt">&lt;/div&gt;</span>\n            \n        <span class="nt">&lt;/div&gt;</span>\n            <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;counter&quot;</span><span class="nt">&gt;</span>\n                <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;countdown-days&quot;</span> <span class="na">class=</span><span class="s">&quot;is-countdown&quot;</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-row countdown-show4&quot;</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-section&quot;</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-amount&quot;</span><span class="nt">&gt;</span>1119<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-period&quot;</span><span class="nt">&gt;</span> Days <span class="nt">&lt;/span&gt;&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-section&quot;</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-amount&quot;</span><span class="nt">&gt;</span>23<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-period&quot;</span><span class="nt">&gt;</span> Hours <span class="nt">&lt;/span&gt;&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-section&quot;</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-amount&quot;</span><span class="nt">&gt;</span>11<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-period&quot;</span><span class="nt">&gt;</span> Minutes <span class="nt">&lt;/span&gt;&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-section&quot;</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-amount&quot;</span><span class="nt">&gt;</span>31<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-period&quot;</span><span class="nt">&gt;</span> Seconds <span class="nt">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;</span>\n                <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;countdown-days-suffix&quot;</span><span class="nt">&gt;</span> &#39;
+</pre></div>
+
+
+<p>Looks like the info is here, but we still need to extract it. For that, let's import <code>pprint</code> which will help us to sort the info and make it a little more readable:</p>
+<div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pprint</span> <span class="kn">import</span> <span class="n">pprint</span>
+<span class="n">pprint</span><span class="p">(</span><span class="n">r5</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="s1">&#39;Sunday, 18 December 2022 00:00{days}until the start&#39;</span><span class="p">)[</span><span class="s1">&#39;days&#39;</span><span class="p">])</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>(&#39;\n&#39;
+ &#39;        <span class="nt">&lt;/time&gt;</span>\n&#39;
+ &#39;\n&#39;
+ &#39;                                <span class="nt">&lt;/div&gt;</span>\n&#39;
+ &#39;                                                            <span class="nt">&lt;div</span> <span class="err">&#39;</span>
+ <span class="err">&#39;</span><span class="na">class=</span><span class="s">&quot;event-location&quot;</span><span class="nt">&gt;</span>\n&#39;
+ &#39;                                    <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">&quot;event-location-label&quot;</span><span class="nt">&gt;&lt;i</span> <span class="err">&#39;</span>
+ <span class="err">&#39;</span><span class="na">class=</span><span class="s">&quot;fa fa-map-marker&quot;</span> <span class="na">title=</span><span class="s">&quot;Location&quot;</span><span class="nt">&gt;&lt;/i&gt;&lt;/span&gt;</span>\n&#39;
+ &#39;                                        <span class="nt">&lt;span&gt;</span>Qatar<span class="nt">&lt;/span&gt;</span>\n&#39;
+ &#39;                                <span class="nt">&lt;/div&gt;</span>\n&#39;
+ &#39;                                                                                                                                        &#39;
+ &#39;<span class="nt">&lt;/div&gt;</span>\n&#39;
+ &#39;\n&#39;
+ &#39;            <span class="nt">&lt;/div&gt;</span>\n&#39;
+ &#39;            \n&#39;
+ &#39;        <span class="nt">&lt;/div&gt;</span>\n&#39;
+ &#39;            <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;counter&quot;</span><span class="nt">&gt;</span>\n&#39;
+ &#39;                <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;countdown-days&quot;</span> <span class="na">class=</span><span class="s">&quot;is-countdown&quot;</span><span class="nt">&gt;&lt;span</span> <span class="err">&#39;</span>
+ <span class="err">&#39;</span><span class="na">class=</span><span class="s">&quot;countdown-row countdown-show4&quot;</span><span class="nt">&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-section&quot;</span><span class="nt">&gt;&lt;span</span> <span class="err">&#39;</span>
+ <span class="err">&#39;</span><span class="na">class=</span><span class="s">&quot;countdown-amount&quot;</span><span class="nt">&gt;</span>1119<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-period&quot;</span><span class="nt">&gt;</span> Days &#39;
+ &#39;<span class="nt">&lt;/span&gt;&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-section&quot;</span><span class="nt">&gt;&lt;span</span> <span class="err">&#39;</span>
+ <span class="err">&#39;</span><span class="na">class=</span><span class="s">&quot;countdown-amount&quot;</span><span class="nt">&gt;</span>23<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-period&quot;</span><span class="nt">&gt;</span> Hours &#39;
+ &#39;<span class="nt">&lt;/span&gt;&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-section&quot;</span><span class="nt">&gt;&lt;span</span> <span class="err">&#39;</span>
+ <span class="err">&#39;</span><span class="na">class=</span><span class="s">&quot;countdown-amount&quot;</span><span class="nt">&gt;</span>11<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-period&quot;</span><span class="nt">&gt;</span> Minutes &#39;
+ &#39;<span class="nt">&lt;/span&gt;&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-section&quot;</span><span class="nt">&gt;&lt;span</span> <span class="err">&#39;</span>
+ <span class="err">&#39;</span><span class="na">class=</span><span class="s">&quot;countdown-amount&quot;</span><span class="nt">&gt;</span>31<span class="nt">&lt;/span&gt;&lt;span</span> <span class="na">class=</span><span class="s">&quot;countdown-period&quot;</span><span class="nt">&gt;</span> Seconds &#39;
+ &#39;<span class="nt">&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/div&gt;</span>\n&#39;
+ &#39;                <span class="nt">&lt;div</span> <span class="na">id=</span><span class="s">&quot;countdown-days-suffix&quot;</span><span class="nt">&gt;</span> &#39;)
+</pre></div>
+
+
+<p>Finally, we can use list comprehension to extract we need:</p>
+<div class="highlight"><pre><span></span><span class="n">periods</span> <span class="o">=</span> <span class="p">[</span><span class="n">element</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">r5</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;.countdown-period&#39;</span><span class="p">)]</span>
+<span class="n">amounts</span> <span class="o">=</span> <span class="p">[</span><span class="n">element</span><span class="o">.</span><span class="n">text</span> <span class="k">for</span> <span class="n">element</span> <span class="ow">in</span> <span class="n">r5</span><span class="o">.</span><span class="n">html</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;.countdown-amount&#39;</span><span class="p">)]</span>
+<span class="n">countdown_data</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">periods</span><span class="p">,</span> <span class="n">amounts</span><span class="p">))</span>
+<span class="n">countdown_data</span>
+</pre></div>
+
+
+<div class="highlight"><pre><span></span>{&#39;Days&#39;: &#39;1119&#39;, &#39;Hours&#39;: &#39;23&#39;, &#39;Minutes&#39;: &#39;11&#39;, &#39;Seconds&#39;: &#39;31&#39;}
+</pre></div>
+
+
+<p>😎 We finally made it! there are 1119 days left, this gives you some time to practice boys, so you better get ready!</p>
+<p><img alt="gif" src="images/Blog_4/practice.gif"></p>
+<h3> 4. Conclusion </h3>
+
+<p>I would only recommend this library if you want to make basic requests as grabbing links, attibutes, or text, from a url. However, if you have to parse more complex websites, this library will become harder to use and some workaround will be required to reach the information that you need. Personally, going through the official tutorial has not been sufficient to solve the issues I encountered. On top of that, <b>requests-HTML</b> has a substantial number of open issues on Pypi.org and Github (~80 at the moment). So, before using it,  I would suggest you have a look at this website: https://www.scraperapi.com/blog/the-10-best-web-scraping-tools that will help you to select the best library based on the problem you are trying to solve, and also give a try to Gazpacho (https://pypi.org/project/gazpacho/), which just came out, has no reported issues so far, and will help you to tackle most of your tasks in a very fast and easy way!</p>
+            </section>
+
+            <section class="post-info">
+                <div class="post-share">
+                    <a class="twitter" href="https://twitter.com/share?text=Introduction To Web Scraping - Testing Requests-HTML Web Parser&amp;url=https://Bolive84.github.io/Blog/Blog_4.html" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+                    </a>
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://Bolive84.github.io/Blog/Blog_4.html" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+                    </a>
+                    <a class="googleplus" href="https://plus.google.com/share?url=https://Bolive84.github.io/Blog/Blog_4.html" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
+                    </a>
+                    <div class="clear"></div>
+                </div>
+
+
+                <div class="clear"></div>
+
+
+                </section>
+
+
+                <aside class="post-nav">
+                    <div class="clear"></div>
+                </aside>
+
+            </div>
+        </article>
+    </main>
+      <!-- TODO : Body class -->
+    <div id="body-class" style="display: none;" class=""></div>
+
+    <footer id="footer">
+      <div class="inner">
+        <section class="credits">
+
+
+          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>
+          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>
+        </section>
+      </div>
+    </footer>
+  </section>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script type="text/javascript" src="https://Bolive84.github.io/Blog/theme/js/script.js"></script>
+
+</body>
+</html>

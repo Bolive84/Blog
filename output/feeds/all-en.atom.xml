@@ -1,5 +1,382 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Benoit's Blog</title><link href="https://Bolive84.github.io/Blog/" rel="alternate"></link><link href="https://Bolive84.github.io/Blog/feeds/all-en.atom.xml" rel="self"></link><id>https://Bolive84.github.io/Blog/</id><updated>2019-10-07T00:00:00-04:00</updated><entry><title>Introduction To Word Embeddings - How To Train Your Own Word Vectors Using The Simpsons Dialogues?</title><link href="https://Bolive84.github.io/Blog/Blog_3.html" rel="alternate"></link><published>2019-10-07T00:00:00-04:00</published><updated>2019-10-07T00:00:00-04:00</updated><author><name>Benoit Olive</name></author><id>tag:bolive84.github.io,2019-10-07:/Blog/Blog_3.html</id><summary type="html">&lt;p&gt;&lt;font color='darkblue'&gt;&lt;br&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Benoit's Blog</title><link href="https://Bolive84.github.io/Blog/" rel="alternate"></link><link href="https://Bolive84.github.io/Blog/feeds/all-en.atom.xml" rel="self"></link><id>https://Bolive84.github.io/Blog/</id><updated>2019-10-28T00:00:00-04:00</updated><entry><title>Introduction To Web Scraping - Testing Requests-HTML Web Parser</title><link href="https://Bolive84.github.io/Blog/Blog_4.html" rel="alternate"></link><published>2019-10-28T00:00:00-04:00</published><updated>2019-10-28T00:00:00-04:00</updated><author><name>Benoit Olive</name></author><id>tag:bolive84.github.io,2019-10-28:/Blog/Blog_4.html</id><summary type="html">&lt;p&gt;&lt;img alt="png" src="images/Blog_4/web_scraping2.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;h1&gt; Testing Requests-HTML Web Parser &lt;h1/&gt;&lt;/center&gt;
+&lt;h2&gt; What is web scraping all about? &lt;/h2&gt;
+Well, according to Wikipedia, &lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;&lt;em&gt;Web scraping, web harvesting, or web data extraction is data scraping used for extracting data from websites. While web scraping can be done manually by a software user, the term typically refers to automated processes implemented …&lt;/em&gt;&lt;/b&gt;&lt;/p&gt;</summary><content type="html">&lt;p&gt;&lt;img alt="png" src="images/Blog_4/web_scraping2.png"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;center&gt;&lt;h1&gt; Testing Requests-HTML Web Parser &lt;h1/&gt;&lt;/center&gt;
+&lt;h2&gt; What is web scraping all about? &lt;/h2&gt;
+Well, according to Wikipedia, &lt;br&gt;&lt;/p&gt;
+&lt;p&gt;&lt;b&gt;&lt;em&gt;Web scraping, web harvesting, or web data extraction is data scraping used for extracting data from websites. While web scraping can be done manually by a software user, the term typically refers to automated processes implemented using a bot or web crawler. It is a form of copying, in which specific data is gathered and copied from the web, typically into a central local database or spreadsheet, for later retrieval or analysis.&lt;/em&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;p&gt;Most websites do not offer the functionality to save a copy of this data for personal use. The only option then is to manually copy and paste the data which can become very tedious to complete. Web Scraping is the technique of automating this process, so that instead of manually copying the data from websites, the Web Scraper will help you to perform the same task within a fraction of the time. Ok sounds great, but how this works exactly?&lt;/p&gt;
+&lt;p&gt;For this first try, I am going to use &lt;b&gt;- Requests-HTML -&lt;/b&gt;a library intending to make parsing HTML as simple and intuitive as possible.This library has been created by Kenneth Reitz, the first version has been released on February 2018 and the last update was made on February 2019, - 10.3k stars, 644 forks, 83 reported issues - let's check it out!&lt;/p&gt;
+&lt;p&gt;I think the best way to test the efficacy if this tool will be to go through the github tutorial (https://github.com/psf/requests-html/blob/master/README.rst), follow it step by step to try to gather some data I am interested in.&lt;/p&gt;
+&lt;p&gt;Here is a brief description of how I am going to proceed:
+    1. Install request-html
+    2. Make basic requests
+    3. Try more complex requests
+    4. Share my final thoughts about the library&lt;/p&gt;
+&lt;h3&gt; 1. Install Library &lt;/h3&gt;
+
+&lt;p&gt;Please note that only &lt;strong&gt;Python 3.6&lt;/strong&gt; is supported, not ideal as &lt;strong&gt;Python 3.8&lt;/strong&gt; just came out, but let's downgrade to Python 3.6 and pip install the library:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;gt; pip install requests-html&lt;span class="sb"&gt;```&lt;/span&gt;
+
+&amp;lt;h3&amp;gt; &lt;span class="m"&gt;2&lt;/span&gt;. Make Basic Requests &amp;lt;/h3&amp;gt;
+
+Let&lt;span class="err"&gt;&amp;#39;&lt;/span&gt;s import &lt;span class="sb"&gt;`&lt;/span&gt;HTMLSession&lt;span class="sb"&gt;`&lt;/span&gt;.
+
+
+​&lt;span class="sb"&gt;```&lt;/span&gt;python
+from requests_html import HTMLSession
+&lt;span class="nv"&gt;session&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; HTMLSession&lt;span class="o"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And make a &lt;code&gt;get&lt;/code&gt; request, which allows us to connect to the url we want to connect to:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;session&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://www.elections.ca/home.aspx&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Then, it becomes easy to grab the list of all links on the page by using &lt;code&gt;html.links&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;links&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;{&amp;#39;/Scripts/vis/FindED?L=e&amp;amp;QID=-1&amp;amp;PAGEID=20&amp;#39;,
+ &amp;#39;/content.aspx?section=abo&amp;amp;dir=pri&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content.aspx?section=abo&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content.aspx?section=cont&amp;amp;dir=soc&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content.aspx?section=ele&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content.aspx?section=fin&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content.aspx?section=med&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content.aspx?section=pol&amp;amp;dir=par&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content.aspx?section=pol&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content.aspx?section=pri&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content.aspx?section=res&amp;amp;dir=cir/maps2&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content.aspx?section=res&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content.aspx?section=vot&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content2.aspx?section=acc&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content2.aspx?section=can&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content2.aspx?section=conge&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content2.aspx?section=faq&amp;amp;dir=votinghours&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content2.aspx?section=faq&amp;amp;document=fac&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content2.aspx?section=faq&amp;amp;document=fedelect&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content2.aspx?section=faq&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content2.aspx?section=id&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content2.aspx?section=job&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content2.aspx?section=reg&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content2.aspx?section=sec&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content2.aspx?section=secure&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content2.aspx?section=spr&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content2.aspx?section=svr&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content2.aspx?section=vote&amp;amp;dir=vic&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/content2.aspx?section=vote&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;/home.aspx&amp;#39;,
+ &amp;#39;accueil.aspx&amp;#39;,
+ &amp;#39;home.aspx&amp;#39;,
+ &amp;#39;http://laws-lois.justice.gc.ca/eng/acts/E-2.01/index.html&amp;#39;,
+ &amp;#39;https://enr.elections.ca/National.aspx?lang=e&amp;#39;}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;... or the list of absolute links only with &lt;code&gt;html.absolute_links&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;absolute_links&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;{&amp;#39;http://laws-lois.justice.gc.ca/eng/acts/E-2.01/index.html&amp;#39;,
+ &amp;#39;https://enr.elections.ca/National.aspx?lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/Scripts/vis/FindED?L=e&amp;amp;QID=-1&amp;amp;PAGEID=20&amp;#39;,
+ &amp;#39;https://www.elections.ca/accueil.aspx&amp;#39;,
+ &amp;#39;https://www.elections.ca/content.aspx?section=abo&amp;amp;dir=pri&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content.aspx?section=abo&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content.aspx?section=cont&amp;amp;dir=soc&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content.aspx?section=ele&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content.aspx?section=fin&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content.aspx?section=med&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content.aspx?section=pol&amp;amp;dir=par&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content.aspx?section=pol&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content.aspx?section=pri&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content.aspx?section=res&amp;amp;dir=cir/maps2&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content.aspx?section=res&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content.aspx?section=vot&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=acc&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=can&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=conge&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=faq&amp;amp;dir=votinghours&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=faq&amp;amp;document=fac&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=faq&amp;amp;document=fedelect&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=faq&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=id&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=job&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=reg&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=sec&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=secure&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=spr&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=svr&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=vote&amp;amp;dir=vic&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=vote&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/home.aspx&amp;#39;}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Now, I want to try to select one specific item with a CSS selector, this is possible with &lt;code&gt;html.find&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;voting_tab&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#topnavlist&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And this gives me direct acces to this item's content with &lt;code&gt;.text&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;voting_tab&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Voting
+(Home)
+Spread
+the word
+Jobs
+Candidates, Parties
+&amp;amp; Third Parties
+Media
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Awesome! Can we get all the attributes from this item now? Yep! with &lt;code&gt;.attrs&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;voting_tab&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;attrs&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;{&amp;#39;id&amp;#39;: &amp;#39;topnavlist&amp;#39;, &amp;#39;class&amp;#39;: (&amp;#39;navul&amp;#39;, &amp;#39;open&amp;#39;, &amp;#39;left&amp;#39;)}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;or render out the HTML code behind it? Of course, this is easy you can use &lt;code&gt;.html&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;voting_tab&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;#39;&lt;span class="nt"&gt;&amp;lt;ul&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;topnavlist&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;navul open left&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;\n&lt;span class="nt"&gt;&amp;lt;li&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;current&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/home.aspx&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Voting&lt;span class="nt"&gt;&amp;lt;br/&amp;gt;&lt;/span&gt; (Home)&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;\n&lt;span class="nt"&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/content2.aspx?section=spr&amp;amp;amp;document=index&amp;amp;amp;lang=e&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Spread&lt;span class="nt"&gt;&amp;lt;br/&amp;gt;&lt;/span&gt; the word&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;\n&lt;span class="nt"&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/content2.aspx?section=job&amp;amp;amp;document=index&amp;amp;amp;lang=e&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Jobs&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;\n&lt;span class="nt"&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;larger&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/content2.aspx?section=can&amp;amp;amp;document=index&amp;amp;amp;lang=e&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Candidates, Parties &lt;span class="nt"&gt;&amp;lt;br/&amp;gt;&lt;/span&gt;&lt;span class="ni"&gt;&amp;amp;amp;&lt;/span&gt; Third Parties&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;\n&lt;span class="c"&gt;&amp;lt;!--&amp;lt;li&amp;gt;&amp;lt;a class=&amp;quot;allcaps&amp;quot; href=&amp;quot;/content2.aspx?section=thi&amp;amp;amp;document=index&amp;amp;amp;lang=e&amp;quot;&amp;gt;Accessibility&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;--&amp;gt;&lt;/span&gt;\n&lt;span class="nt"&gt;&amp;lt;li&amp;gt;&amp;lt;a&lt;/span&gt; &lt;span class="na"&gt;href=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/content.aspx?section=med&amp;amp;amp;document=index&amp;amp;amp;lang=e&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;Media&lt;span class="nt"&gt;&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&lt;/span&gt;\n&lt;span class="nt"&gt;&amp;lt;/ul&amp;gt;&lt;/span&gt;&amp;#39;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Waouh! That's great!&lt;/p&gt;
+&lt;p&gt;What about inspecting a particular element within this item? No problem! Use &lt;code&gt;.find&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;voting_tab&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[&amp;lt;Element &amp;#39;a&amp;#39; href=&amp;#39;/home.aspx&amp;#39;&amp;gt;,
+ &amp;lt;Element &amp;#39;a&amp;#39; href=&amp;#39;/content2.aspx?section=spr&amp;amp;document=index&amp;amp;lang=e&amp;#39;&amp;gt;,
+ &amp;lt;Element &amp;#39;a&amp;#39; href=&amp;#39;/content2.aspx?section=job&amp;amp;document=index&amp;amp;lang=e&amp;#39;&amp;gt;,
+ &amp;lt;Element &amp;#39;a&amp;#39; class=(&amp;#39;larger&amp;#39;,) href=&amp;#39;/content2.aspx?section=can&amp;amp;document=index&amp;amp;lang=e&amp;#39;&amp;gt;,
+ &amp;lt;Element &amp;#39;a&amp;#39; href=&amp;#39;/content.aspx?section=med&amp;amp;document=index&amp;amp;lang=e&amp;#39;&amp;gt;]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Here you can use &lt;code&gt;.absolute_links&lt;/code&gt; on this specific item, just as we did earlier on the website home page.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;voting_tab&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;absolute_links&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;{&amp;#39;https://www.elections.ca/content.aspx?section=med&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=can&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=job&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/content2.aspx?section=spr&amp;amp;document=index&amp;amp;lang=e&amp;#39;,
+ &amp;#39;https://www.elections.ca/home.aspx&amp;#39;}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;It is also possible to search for text on the page we are looking at:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Elections Canada is the {} responsible for conducting federal elections and referendums.&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;#39;independent, non-partisan agency&amp;#39;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;&lt;img alt="gif" src="images/Blog_4/applause.gif"&gt;&lt;/p&gt;
+&lt;h3&gt; 3. Try More Complex Requests &lt;/h3&gt;
+
+&lt;p&gt;Requests-HTML killed all basic requests, so it is time now to see how it performs when it becomes a little trickier!&lt;/p&gt;
+&lt;p&gt;With AsyncHTMLSession, we should be able to connect to multiple urls at the same time, using functions and &lt;code&gt;.run&lt;/code&gt; method. Also, make sure to use &lt;code&gt;await&lt;/code&gt; along with &lt;code&gt;.get&lt;/code&gt; to connect to an url:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;nest_asyncio&lt;/span&gt;
+&lt;span class="n"&gt;nest_asyncio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;apply&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;requests_html&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;AsyncHTMLSession&lt;/span&gt;
+&lt;span class="n"&gt;asession&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;AsyncHTMLSession&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+
+&lt;span class="n"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_pythonorg&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;await&lt;/span&gt; &lt;span class="n"&gt;asession&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://newsinteractives.cbc.ca/elections/federal/2019/results/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;
+&lt;span class="n"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_reddit&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;await&lt;/span&gt; &lt;span class="n"&gt;asession&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://www.elections.ca/home.aspx&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;
+&lt;span class="n"&gt;async&lt;/span&gt; &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get_google&lt;/span&gt;&lt;span class="p"&gt;():&lt;/span&gt;
+    &lt;span class="n"&gt;r&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;await&lt;/span&gt; &lt;span class="n"&gt;asession&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://nationalpost.com/news/politics/election-2019/canadian-federal-election-live-riding-map-results&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;
+
+&lt;span class="n"&gt;results&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;asession&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;run&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;get_pythonorg&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;get_reddit&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;get_google&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;results&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[&amp;lt;Response [200]&amp;gt;, &amp;lt;Response [200]&amp;gt;, &amp;lt;Response [200]&amp;gt;]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This preliminary step will allow us to send our requests to all targeted websites and use all types of requests we have used on a single url like &lt;code&gt;.url&lt;/code&gt;, &lt;code&gt;.text&lt;/code&gt;, &lt;code&gt;.links&lt;/code&gt;, etc. :&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;result&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;results&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;result&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;url&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;https://www.elections.ca/home.aspx
+https://nationalpost.com/news/politics/election-2019/canadian-federal-election-live-riding-map-results
+https://newsinteractives.cbc.ca/elections/federal/2019/results/
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;🚨 Please note that if you do not import &lt;code&gt;nest_asyncio&lt;/code&gt; and use &lt;code&gt;nest_asyncio.apply()&lt;/code&gt; you will receive the following runtime error: &lt;br&gt; &amp;gt; &lt;b&gt;RuntimeError&lt;/b&gt;: This event loop is already running&lt;/p&gt;
+&lt;p&gt;Let's test our tool with a more complex CSS Selector:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;r2&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;session&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://newsinteractives.cbc.ca/elections/federal/2019/results/&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;span class="n"&gt;selection&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;#main &amp;gt; section.story-cta.contents &amp;gt; div &amp;gt; div.component-intro__dek.small-margin &amp;gt; p&amp;#39;&lt;/span&gt;
+&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;selection&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;first&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="bp"&gt;True&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;Justin Trudeau will be returning to the Prime Minister&amp;#39;s Office, but this time he will be leading a Liberal minority government. The Bloc Québécois will enter the 43rd Parliament with a far stronger presence. The NDP surge some pollsters anticipated did not materialize but the party does have enough seats to hold the balance of power in a Liberal minority government. The Conservatives increased their share of the popular vote and their seat count and continue to be the official opposition.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And it looks like XPath is supported too (make sure to copy full XPath though!)&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;r2&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;xpath&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;/html/body/div[1]/main&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;[&amp;lt;Element &amp;#39;main&amp;#39; id=&amp;#39;main&amp;#39; class=(&amp;#39;results&amp;#39;, &amp;#39;results-post&amp;#39;, &amp;#39;aria-hideable&amp;#39;)&amp;gt;]
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This library is also supposed to provide a full Javascript support, let's make sure this is the case:&lt;/p&gt;
+&lt;p&gt;We need to grab some text that’s rendered by JavaScript, for example the countdown to FIFA World Cup 2022 in Qatar:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;r4&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;session&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://days.to/until/fifa-world-cup-2022&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;r4&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Sunday, 18 December 2022 00:00{}until the start&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;#39;\r\n        &lt;span class="nt"&gt;&amp;lt;/time&amp;gt;&lt;/span&gt;\r\n\r\n                                &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\r\n                                                            &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;event-location&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;\r\n                                    &lt;span class="nt"&gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;event-location-label&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fa fa-map-marker&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;title=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Location&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;\r\n                                        &lt;span class="nt"&gt;&amp;lt;span&amp;gt;&lt;/span&gt;Qatar&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;\r\n                                &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\r\n                                                                                                                                        &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\r\n\r\n            &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\r\n            \r\n        &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\r\n            &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;counter&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;\r\n                &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-days&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;\r\n                    There are &lt;span class="nt"&gt;&amp;lt;strong&amp;gt;&lt;/span&gt;1119 days  until FIFA World Cup 2022&lt;span class="nt"&gt;&amp;lt;/strong&amp;gt;&lt;/span&gt;\r\n                &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\r\n                &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-days-suffix&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt; &amp;#39;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;In order to see the dynamic countdown, we are told to use the &lt;code&gt;.render()&lt;/code&gt; method, that was made to render dynamic content just like on a web page:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;r4&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;render&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;---------------------------------------------------------------------------
+
+RuntimeError                              Traceback (most recent call last)
+
+&amp;lt;ipython-input-19-5fb26eabc75d&amp;gt; in &amp;lt;module&amp;gt;
+----&amp;gt; 1 r4.html.render()
+
+
+~/anaconda3/lib/python3.6/site-packages/requests_html.py in render(self, retries, script, wait, scrolldown, sleep, reload, timeout, keep_page)
+    584         &amp;quot;&amp;quot;&amp;quot;
+    585
+--&amp;gt; 586         self.browser = self.session.browser  # Automatically create a event loop and browser
+    587         content = None
+    588
+
+
+~/anaconda3/lib/python3.6/site-packages/requests_html.py in browser(self)
+    727             self.loop = asyncio.get_event_loop()
+    728             if self.loop.is_running():
+--&amp;gt; 729                 raise RuntimeError(&amp;quot;Cannot use HTMLSession within an existing event loop. Use AsyncHTMLSession instead.&amp;quot;)
+    730             self._browser = self.loop.run_until_complete(super().browser)
+    731         return self._browser
+
+
+RuntimeError: Cannot use HTMLSession within an existing event loop. Use AsyncHTMLSession instead.
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;😬  Oops... This method raises a &lt;b&gt;RuntimeError&lt;/b&gt;. So, as indicated in the error message, let's see if using AsyncHTMLSession solves our issue:&lt;/p&gt;
+&lt;p&gt;Please note that with AsyncHTMLSession, you will need to use &lt;code&gt;html.arender()&lt;/code&gt; to render dynamic content, you should format your request as follows: &lt;br&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;await r.html.arender()&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;r5&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;await&lt;/span&gt; &lt;span class="n"&gt;asession&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;https://days.to/until/fifa-world-cup-2022&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;await&lt;/span&gt; &lt;span class="n"&gt;r5&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;arender&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;span class="n"&gt;r5&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Sunday, 18 December 2022 00:00{days}until the start&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;days&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&amp;#39;\n        &lt;span class="nt"&gt;&amp;lt;/time&amp;gt;&lt;/span&gt;\n\n                                &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\n                                                            &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;event-location&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;\n                                    &lt;span class="nt"&gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;event-location-label&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fa fa-map-marker&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;title=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Location&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;\n                                        &lt;span class="nt"&gt;&amp;lt;span&amp;gt;&lt;/span&gt;Qatar&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;\n                                &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\n                                                                                                                                        &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\n\n            &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\n            \n        &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\n            &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;counter&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;\n                &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-days&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;is-countdown&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-row countdown-show4&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-section&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-amount&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;1119&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-period&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt; Days &lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-section&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-amount&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;23&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-period&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt; Hours &lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-section&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-amount&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;11&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-period&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt; Minutes &lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-section&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-amount&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;31&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-period&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt; Seconds &lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\n                &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-days-suffix&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt; &amp;#39;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Looks like the info is here, but we still need to extract it. For that, let's import &lt;code&gt;pprint&lt;/code&gt; which will help us to sort the info and make it a little more readable:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;pprint&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;pprint&lt;/span&gt;
+&lt;span class="n"&gt;pprint&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;r5&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;search&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;Sunday, 18 December 2022 00:00{days}until the start&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;days&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;])&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;(&amp;#39;\n&amp;#39;
+ &amp;#39;        &lt;span class="nt"&gt;&amp;lt;/time&amp;gt;&lt;/span&gt;\n&amp;#39;
+ &amp;#39;\n&amp;#39;
+ &amp;#39;                                &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\n&amp;#39;
+ &amp;#39;                                                            &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
+ &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;event-location&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;\n&amp;#39;
+ &amp;#39;                                    &lt;span class="nt"&gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;event-location-label&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;i&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
+ &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;fa fa-map-marker&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;title=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;Location&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;/i&amp;gt;&amp;lt;/span&amp;gt;&lt;/span&gt;\n&amp;#39;
+ &amp;#39;                                        &lt;span class="nt"&gt;&amp;lt;span&amp;gt;&lt;/span&gt;Qatar&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&lt;/span&gt;\n&amp;#39;
+ &amp;#39;                                &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\n&amp;#39;
+ &amp;#39;                                                                                                                                        &amp;#39;
+ &amp;#39;&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\n&amp;#39;
+ &amp;#39;\n&amp;#39;
+ &amp;#39;            &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\n&amp;#39;
+ &amp;#39;            \n&amp;#39;
+ &amp;#39;        &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\n&amp;#39;
+ &amp;#39;            &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;counter&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;\n&amp;#39;
+ &amp;#39;                &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-days&amp;quot;&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;is-countdown&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
+ &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-row countdown-show4&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-section&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
+ &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-amount&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;1119&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-period&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt; Days &amp;#39;
+ &amp;#39;&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-section&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
+ &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-amount&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;23&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-period&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt; Hours &amp;#39;
+ &amp;#39;&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-section&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
+ &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-amount&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;11&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-period&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt; Minutes &amp;#39;
+ &amp;#39;&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-section&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;
+ &lt;span class="err"&gt;&amp;#39;&lt;/span&gt;&lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-amount&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;31&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&amp;lt;span&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-period&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt; Seconds &amp;#39;
+ &amp;#39;&lt;span class="nt"&gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/span&amp;gt;&amp;lt;/div&amp;gt;&lt;/span&gt;\n&amp;#39;
+ &amp;#39;                &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;id=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;countdown-days-suffix&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt; &amp;#39;)
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Finally, we can use list comprehension to extract we need:&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;span class="n"&gt;periods&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;element&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;element&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;r5&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.countdown-period&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;span class="n"&gt;amounts&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;element&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;text&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;element&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;r5&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;html&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;find&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.countdown-amount&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)]&lt;/span&gt;
+&lt;span class="n"&gt;countdown_data&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;dict&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;zip&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;periods&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;amounts&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="n"&gt;countdown_data&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;{&amp;#39;Days&amp;#39;: &amp;#39;1119&amp;#39;, &amp;#39;Hours&amp;#39;: &amp;#39;23&amp;#39;, &amp;#39;Minutes&amp;#39;: &amp;#39;11&amp;#39;, &amp;#39;Seconds&amp;#39;: &amp;#39;31&amp;#39;}
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;😎 We finally made it! there are 1119 days left, this gives you some time to practice boys, so you better get ready!&lt;/p&gt;
+&lt;p&gt;&lt;img alt="gif" src="images/Blog_4/practice.gif"&gt;&lt;/p&gt;
+&lt;h3&gt; 4. Conclusion &lt;/h3&gt;
+
+&lt;p&gt;I would only recommend this library if you want to make basic requests as grabbing links, attibutes, or text, from a url. However, if you have to parse more complex websites, this library will become harder to use and some workaround will be required to reach the information that you need. Personally, going through the official tutorial has not been sufficient to solve the issues I encountered. On top of that, &lt;b&gt;requests-HTML&lt;/b&gt; has a substantial number of open issues on Pypi.org and Github (~80 at the moment). So, before using it,  I would suggest you have a look at this website: https://www.scraperapi.com/blog/the-10-best-web-scraping-tools that will help you to select the best library based on the problem you are trying to solve, and also give a try to Gazpacho (https://pypi.org/project/gazpacho/), which just came out, has no reported issues so far, and will help you to tackle most of your tasks in a very fast and easy way!&lt;/p&gt;</content></entry><entry><title>Introduction To Word Embeddings - How To Train Your Own Word Vectors Using The Simpsons Dialogues?</title><link href="https://Bolive84.github.io/Blog/Blog_3.html" rel="alternate"></link><published>2019-10-07T00:00:00-04:00</published><updated>2019-10-07T00:00:00-04:00</updated><author><name>Benoit Olive</name></author><id>tag:bolive84.github.io,2019-10-07:/Blog/Blog_3.html</id><summary type="html">&lt;p&gt;&lt;font color='darkblue'&gt;&lt;br&gt;
 &lt;h2&gt; &lt;center&gt;Introduction To Word Embeddings&lt;/center&gt;  &lt;br&gt;  &lt;center&gt; &lt;i&gt;How To Train Your Own Word Vectors Using The Simpsons Dialogues? &lt;/i&gt; &lt;/center&gt;
 &lt;/h2&gt;
 &lt;/font&gt;&lt;/p&gt;

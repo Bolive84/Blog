@@ -1,7 +1,7 @@
 Title: sklearn RANSACRegressor Method
 Date: 2019-09-15
 Slug: Blog_1
-cover: /assets/images/article_cover.jpg
+cover: /images/article_cover.jpg
 
 
 # RANdom SAmple Consensus (RANSAC) Method: #
