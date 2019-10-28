@@ -1,21 +1,21 @@
-Title: Introduction To Web Scraping - Testing Requests-HTML Web Parser
+Title: Introduction To Web Scraping By Testing Requests-HTML Web Parser
 Date: 2019-10-28
 Slug: Blog_4
 cover: /images/article_cover.jpg
 
+
 ![png](images/Blog_4/web_scraping2.png)
-
-
 
 <center><h1> Testing Requests-HTML Web Parser <h1/></center>
 <h2> What is web scraping all about? </h2>
-Well, according to Wikipedia, <br>
+<br>
+<br> Well, according to Wikipedia, <br>
 
 <b>*Web scraping, web harvesting, or web data extraction is data scraping used for extracting data from websites. While web scraping can be done manually by a software user, the term typically refers to automated processes implemented using a bot or web crawler. It is a form of copying, in which specific data is gathered and copied from the web, typically into a central local database or spreadsheet, for later retrieval or analysis.*</b>
 
-Most websites do not offer the functionality to save a copy of this data for personal use. The only option then is to manually copy and paste the data which can become very tedious to complete. Web Scraping is the technique of automating this process, so that instead of manually copying the data from websites, the Web Scraper will help you to perform the same task within a fraction of the time. Ok sounds great, but how this works exactly?
+Most websites do not offer the functionality to save a copy of this data for personal use. The only option then is to manually copy and paste the data which can become very tedious to complete. Web Scraping is the technique of automating this process, so that instead of manually copying the data from websites, the Web Scraper will help you to perform the same task within a fraction of the time. Ok, sounds great, but how this works exactly?
 
-For this first try, I am going to use <b>- Requests-HTML -</b>a library intending to make parsing HTML as simple and intuitive as possible.This library has been created by Kenneth Reitz, the first version has been released on February 2018 and the last update was made on February 2019, - 10.3k stars, 644 forks, 83 reported issues - let's check it out!
+For this first try, I am going to use <b> Requests-HTML </b>, a library intending to make parsing HTML as simple and intuitive as possible. This library has been created by Kenneth Reitz, the first version has been released on February 2018 and the last update was made on February 2019, - 10.3k stars, 644 forks, 83 reported issues - let's check it out!
 
 I think the best way to test the efficacy if this tool will be to go through the github tutorial (https://github.com/psf/requests-html/blob/master/README.rst), follow it step by step to try to gather some data I am interested in.
 
@@ -27,15 +27,17 @@ Here is a brief description of how I am going to proceed:
 
 <h3> 1. Install Library </h3>
 Please note that only **Python 3.6** is supported, not ideal as **Python 3.8** just came out, but let's downgrade to Python 3.6 and pip install the library:
-```bash
-> pip install requests-html```
+
+```python
+> pip install requests-html
+```
+
 
 <h3> 2. Make Basic Requests </h3>
-
 Let's import `HTMLSession`.
 
 
-​```python
+```python
 from requests_html import HTMLSession
 session = HTMLSession()
 ```
@@ -147,7 +149,7 @@ Now, I want to try to select one specific item with a CSS selector, this is poss
 voting_tab = r.html.find('#topnavlist', first=True)
 ```
 
-And this gives me direct acces to this item's content with ``.text``:
+And this gives me direct access to this item's content with ``.text``:
 
 
 ```python
@@ -192,9 +194,7 @@ voting_tab.html
 
 
 
-Waouh! That's great!
-
-What about inspecting a particular element within this item? No problem! Use ``.find``
+That's great! What about inspecting a particular element within this item? No problem! Use ``.find``
 
 
 ```python
@@ -353,9 +353,9 @@ r4.html.render()
 
 
     ---------------------------------------------------------------------------
-
+    
     RuntimeError                              Traceback (most recent call last)
-
+    
     <ipython-input-19-5fb26eabc75d> in <module>
     ----> 1 r4.html.render()
 
@@ -383,8 +383,9 @@ r4.html.render()
 
 Please note that with AsyncHTMLSession, you will need to use ``html.arender()`` to render dynamic content, you should format your request as follows: <br>
 
+```python
 > await r.html.arender()
-
+```
 
 ```python
 r5 = await asession.get('https://days.to/until/fifa-world-cup-2022')
@@ -464,9 +465,5 @@ countdown_data
 
 
 
-
-
-
-
 <h3> 4. Conclusion </h3>
-I would only recommend this library if you want to make basic requests as grabbing links, attibutes, or text, from a url. However, if you have to parse more complex websites, this library will become harder to use and some workaround will be required to reach the information that you need. Personally, going through the official tutorial has not been sufficient to solve the issues I encountered. On top of that, <b>requests-HTML</b> has a substantial number of open issues on Pypi.org and Github (~80 at the moment). So, before using it,  I would suggest you have a look at this website: https://www.scraperapi.com/blog/the-10-best-web-scraping-tools that will help you to select the best library based on the problem you are trying to solve, and also give a try to Gazpacho (https://pypi.org/project/gazpacho/), which just came out, has no reported issues so far, and will help you to tackle most of your tasks in a very fast and easy way!
+I would only recommend this library if you want to make basic requests as grabbing links, attibutes, or text, from a url. However, if you have to parse more complex websites, this library will become harder to use and some workaround will be required to reach the information that you need. Personally, going through the official tutorial has not been sufficient to solve the issues I encountered. On top of that, <b>Requests-HTML</b> has a substantial number of open issues on Pypi.org and Github (~80 at the moment). So, before using it,  I would suggest you have a look at this website: https://www.scraperapi.com/blog/the-10-best-web-scraping-tools that will help you to select the best library based on the problem you are trying to solve, and also give a try to Gazpacho (https://pypi.org/project/gazpacho/), which just came out, has no reported issues so far, and will help you to tackle most of your tasks in a very fast and easy way!
